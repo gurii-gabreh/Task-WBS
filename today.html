@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>タスクスケジュール - 今日/全体</title>
+<style>
+  :root {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --surface-2: #f0ede3;
+    --border: #e3ddce;
+    --border-strong: #d0c8b3;
+    --ink: #211d15;
+    --ink-soft: #675f4f;
+    --ink-muted: #99907c;
+
+    --accent: #1f6e63;
+    --accent-soft: #e1efec;
+
+    --status-notstarted: #857c69;
+    --status-notstarted-bg: #eeeae0;
+    --status-inprogress: #1f6e63;
+    --status-inprogress-bg: #e1efec;
+    --status-done: #0ca30c;
+    --status-done-bg: #e1f5df;
+
+    --sev-good: #0ca30c;
+    --sev-good-bg: #e1f5df;
+    --sev-warn: #b8790a;
+    --sev-warn-bg: #fbedd2;
+    --sev-serious: #c85a2e;
+    --sev-serious-bg: #fbe3d5;
+    --sev-critical: #c22f2f;
+    --sev-critical-bg: #f9dcdb;
+
+    --shadow: 0 1px 2px rgba(30, 25, 15, 0.05), 0 10px 24px -14px rgba(30, 25, 15, 0.18);
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15140f; --surface: #1d1c15; --surface-2: #262419;
+      --border: #35331f; --border-strong: #47441f;
+      --ink: #f3f1e6; --ink-soft: #c7c1ad; --ink-muted: #938a72;
+      --accent: #3fae9e; --accent-soft: #1c352f;
+      --status-notstarted: #a89e85; --status-notstarted-bg: #2b2919;
+      --status-inprogress: #3fae9e; --status-inprogress-bg: #1c352f;
+      --status-done: #4ecb4e; --status-done-bg: #1a3319;
+      --sev-good: #4ecb4e; --sev-good-bg: #1a3319;
+      --sev-warn: #eab038; --sev-warn-bg: #3a2c0f;
+      --sev-serious: #ef8a5c; --sev-serious-bg: #3a2313;
+      --sev-critical: #ef6a6a; --sev-critical-bg: #3a1414;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 24px -14px rgba(0, 0, 0, 0.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15140f; --surface: #1d1c15; --surface-2: #262419;
+    --border: #35331f; --border-strong: #47441f;
+    --ink: #f3f1e6; --ink-soft: #c7c1ad; --ink-muted: #938a72;
+    --accent: #3fae9e; --accent-soft: #1c352f;
+    --status-notstarted: #a89e85; --status-notstarted-bg: #2b2919;
+    --status-inprogress: #3fae9e; --status-inprogress-bg: #1c352f;
+    --status-done: #4ecb4e; --status-done-bg: #1a3319;
+    --sev-good: #4ecb4e; --sev-good-bg: #1a3319;
+    --sev-warn: #eab038; --sev-warn-bg: #3a2c0f;
+    --sev-serious: #ef8a5c; --sev-serious-bg: #3a2313;
+    --sev-critical: #ef6a6a; --sev-critical-bg: #3a1414;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 24px -14px rgba(0, 0, 0, 0.6);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  [hidden] { display: none !important; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); padding: 28px 24px 60px; }
+  .wrap { max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+
+  .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px; }
+  h1 { font-size: 24px; font-weight: 800; margin: 0; letter-spacing: -0.01em; }
+  .lede { font-size: 13px; line-height: 1.6; color: var(--ink-soft); max-width: 76ch; margin: 0; }
+  .back-link { font-size: 12.5px; color: var(--accent); text-decoration: none; }
+  .back-link:hover { text-decoration: underline; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .stat-tile { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); padding: 14px 16px; display: flex; flex-direction: column; gap: 3px; }
+  .stat-tile .num { font-size: 25px; font-weight: 800; letter-spacing: -0.01em; }
+  .stat-tile .num.warn { color: var(--sev-serious); }
+  .stat-tile .label { font-size: 11.5px; color: var(--ink-muted); }
+
+  .tabs { display: flex; gap: 6px; }
+  .tab-btn {
+    font: inherit; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 999px;
+    border: 1px solid var(--border-strong); background: var(--surface); color: var(--ink-soft); cursor: pointer;
+  }
+  .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+  thead th {
+    text-align: left; font-size: 11.5px; font-weight: 700; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.03em;
+    padding: 10px 12px; background: var(--surface-2); border-bottom: 1px solid var(--border); white-space: nowrap;
+  }
+  tbody td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--surface-2); }
+  .lv1-chip { font-size: 11px; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+  .task-id { font-family: ui-monospace, "SF Mono", monospace; font-size: 11.5px; color: var(--ink-muted); }
+  .content-title { font-weight: 700; }
+  .content-subtitle { font-size: 12px; color: var(--ink-muted); margin-top: 2px; }
+  .date-cell { white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  .chip { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 700; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+  .chip .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: none; }
+  .chip.status-notstarted { color: var(--status-notstarted); background: var(--status-notstarted-bg); }
+  .chip.status-inprogress { color: var(--status-inprogress); background: var(--status-inprogress-bg); }
+  .chip.status-done { color: var(--status-done); background: var(--status-done-bg); }
+  .chip.sev-good { color: var(--sev-good); background: var(--sev-good-bg); }
+  .chip.sev-warn { color: var(--sev-warn); background: var(--sev-warn-bg); }
+  .chip.sev-serious { color: var(--sev-serious); background: var(--sev-serious-bg); }
+  .chip.sev-critical { color: var(--sev-critical); background: var(--sev-critical-bg); }
+  .chip.sev-na { color: var(--ink-muted); background: var(--surface-2); }
+
+  .priority { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--ink-soft); white-space: nowrap; }
+  .priority .dots { display: inline-flex; gap: 2px; }
+  .priority .dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--border-strong); }
+  .priority .dots span.on { background: var(--ink-soft); }
+
+  .empty-state { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; color: var(--ink-muted); font-size: 13px; }
+  footer.note { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--ink-muted); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div>
+    <p class="eyebrow">Task Schedule</p>
+    <h1>今日/全体 一覧</h1>
+    <p style="margin:6px 0 0"><a class="back-link" href="./index.html">← カレンダー表示(タスクスケジュール)に戻る</a></p>
+  </div>
+  <p class="lede">
+    カレンダーを使わず、実行タスク(Lv3)だけを表形式で一覧化したページです。「今日」タブは、今日が開始予定〜終了予定の範囲内のタスク・今日が終了予定のタスク・未完了のまま終了予定日を過ぎたタスク(遅延中)、およびルーティン作業のうち今日実施すべきものを表示します。
+  </p>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="tabs">
+    <button type="button" class="tab-btn active" id="tab-today" data-tab="today">📅 今日</button>
+    <button type="button" class="tab-btn" id="tab-all" data-tab="all">📋 全体</button>
+  </div>
+
+  <div id="tableWrap"></div>
+  <div class="empty-state" id="emptyState" hidden></div>
+
+  <footer class="note">
+    <span id="countNote"></span>
+    <span>本日: <span id="todayLabel"></span></span>
+  </footer>
+</div>
+
+<script>
+const now = new Date();
+const TODAY = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+function parseDate(s) { if (!s) return null; const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); }
+function fmt(date) { return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`; }
+function fmtShort(date) { return date ? `${date.getMonth()+1}/${date.getDate()}` : "-"; }
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+const statusChipClass = { "未対応": "status-notstarted", "対応中": "status-inprogress", "完了": "status-done" };
+
+function severityTier(delayDays) {
+  if (delayDays === null) return { key: "na", label: "-" };
+  if (delayDays <= 0) return { key: "good", label: delayDays < 0 ? `${-delayDays}日早い` : "順調" };
+  if (delayDays <= 2) return { key: "warn", label: `+${delayDays}日` };
+  if (delayDays <= 5) return { key: "serious", label: `+${delayDays}日` };
+  return { key: "critical", label: `+${delayDays}日` };
+}
+function diffDays(a, b) { return Math.round((a - b) / 86400000); }
+
+// data/tasks.jsonのroots階層を辿り、葉ノード(children無し)だけを抽出する。
+// index.html(カレンダー表示)のcomputeNode/flattenと同等のロジックを、
+// このページに必要な範囲だけ簡易に再実装している。
+function collectLeaves(nodes, lv1Title, out) {
+  for (const raw of nodes) {
+    if (raw.children) {
+      collectLeaves(raw.children, lv1Title, out);
+      continue;
+    }
+    if (raw.type === "routine") {
+      const start = parseDate(raw.start);
+      const end = raw.end ? parseDate(raw.end) : null;
+      const completedDates = raw.completedDates || [];
+      const doneToday = completedDates.includes(fmt(TODAY));
+      out.push({
+        lv1: lv1Title, taskId: raw.taskId || "-", title: raw.title, subtitle: raw.subtitle || "",
+        start, plannedEnd: end, actualEnd: null,
+        status: "対応中", statusLabel: "継続中", priority: raw.priority,
+        delayDays: null, sev: severityTier(null),
+        isRoutine: true, inRangeToday: start <= TODAY && (!end || TODAY <= end), doneToday,
+      });
+      continue;
+    }
+    const start = parseDate(raw.start);
+    const plannedEnd = parseDate(raw.plannedEnd);
+    const actualEnd = raw.actualEnd ? parseDate(raw.actualEnd) : null;
+    let delayDays;
+    if (raw.status === "完了") {
+      delayDays = diffDays(actualEnd, plannedEnd);
+    } else if (raw.status === "未対応") {
+      delayDays = TODAY > start ? diffDays(TODAY, plannedEnd) : null;
+    } else {
+      const currentEnd = TODAY > plannedEnd ? TODAY : plannedEnd;
+      delayDays = diffDays(currentEnd, plannedEnd);
+    }
+    out.push({
+      lv1: lv1Title, taskId: raw.taskId || "-", title: raw.title, subtitle: raw.subtitle || "",
+      start, plannedEnd, actualEnd,
+      status: raw.status, statusLabel: raw.status, priority: raw.priority,
+      delayDays, sev: severityTier(delayDays),
+      isRoutine: false,
+    });
+  }
+}
+
+function isDueToday(t) {
+  if (t.isRoutine) return t.inRangeToday;
+  const inRange = t.start <= TODAY && TODAY <= t.plannedEnd;
+  const dueToday = fmt(t.plannedEnd) === fmt(TODAY);
+  const overdue = t.status !== "完了" && t.plannedEnd < TODAY;
+  return inRange || dueToday || overdue;
+}
+
+function priorityDots(level) {
+  return `<span class="dots">${[1,2,3].map(i => `<span class="${i <= level ? "on" : ""}"></span>`).join("")}</span>`;
+}
+
+function renderRows(list) {
+  return list.map(t => {
+    const statusChip = t.isRoutine
+      ? `<span class="chip status-inprogress"><span class="dot"></span>${t.doneToday ? "本日実施済み" : "継続中"}</span>`
+      : `<span class="chip ${statusChipClass[t.status]}"><span class="dot"></span>${t.status}</span>`;
+    const delayChip = t.sev.key === "na" ? `<span class="chip sev-na">-</span>` : `<span class="chip sev-${t.sev.key}">${t.sev.label}</span>`;
+    const plannedEndText = t.isRoutine ? (t.plannedEnd ? fmtShort(t.plannedEnd) : "継続中") : fmtShort(t.plannedEnd);
+    const actualEndText = t.isRoutine ? "-" : (t.actualEnd ? fmtShort(t.actualEnd) : "-");
+    return `<tr>
+      <td><span class="lv1-chip">${escapeHtml(t.lv1)}</span></td>
+      <td class="task-id">${escapeHtml(t.taskId)}</td>
+      <td>
+        <div class="content-title">${escapeHtml(t.title)}</div>
+        ${t.subtitle ? `<div class="content-subtitle">${escapeHtml(t.subtitle)}</div>` : ""}
+      </td>
+      <td class="date-cell">${fmtShort(t.start)}</td>
+      <td class="date-cell">${plannedEndText}</td>
+      <td class="date-cell">${actualEndText}</td>
+      <td>${statusChip}</td>
+      <td><span class="priority">${priorityDots(t.priority)}${["低","中","高"][t.priority - 1] || "-"}</span></td>
+      <td>${delayChip}</td>
+    </tr>`;
+  }).join("");
+}
+
+function renderTable(list) {
+  const tableWrap = document.getElementById("tableWrap");
+  const emptyEl = document.getElementById("emptyState");
+  if (list.length === 0) {
+    tableWrap.innerHTML = "";
+    emptyEl.hidden = false;
+    emptyEl.textContent = "該当するタスクはありません。";
+    return;
+  }
+  emptyEl.hidden = true;
+  tableWrap.innerHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>アプリ(Lv1)</th>
+          <th>タスクID</th>
+          <th>対応内容</th>
+          <th>開始予定</th>
+          <th>終了予定</th>
+          <th>終了日</th>
+          <th>ステータス</th>
+          <th>優先度/進捗</th>
+          <th>遅延</th>
+        </tr>
+      </thead>
+      <tbody>${renderRows(list)}</tbody>
+    </table>
+  `;
+}
+
+let ALL = [];
+let currentTab = "today";
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.getElementById("tab-today").classList.toggle("active", tab === "today");
+  document.getElementById("tab-all").classList.toggle("active", tab === "all");
+  const list = tab === "today" ? ALL.filter(isDueToday) : ALL;
+  renderTable(list);
+  document.getElementById("countNote").textContent = `表示件数: ${list.length}件`;
+}
+
+async function load() {
+  const emptyEl = document.getElementById("emptyState");
+  let data;
+  try {
+    const res = await fetch("./data/tasks.json", { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    data = await res.json();
+  } catch (e) {
+    console.error("data/tasks.json の取得に失敗しました", e);
+    emptyEl.hidden = false;
+    emptyEl.textContent = "data/tasks.json を読み込めませんでした。GitHub Pages等のサーバー経由で開いてください。";
+    return;
+  }
+
+  const roots = data.roots || (data.root ? [data.root] : []);
+  ALL = [];
+  for (const root of roots) {
+    collectLeaves(root.children || [], root.title, ALL);
+  }
+
+  const dueToday = ALL.filter(isDueToday);
+  const delayed = ALL.filter(t => !t.isRoutine && t.status !== "完了" && t.delayDays > 0).length;
+  const done = ALL.filter(t => !t.isRoutine && t.status === "完了").length;
+  const totalNonRoutine = ALL.filter(t => !t.isRoutine).length;
+  document.getElementById("stats").innerHTML = [
+    { num: ALL.length, label: "実行タスク(Lv3)総数" },
+    { num: dueToday.length, label: "今日対象" },
+    { num: delayed, label: "遅延中", warn: delayed > 0 },
+    { num: `${done}/${totalNonRoutine}`, label: "完了(ルーティン除く)" },
+  ].map(s => `<div class="stat-tile"><div class="num${s.warn ? " warn" : ""}">${s.num}</div><div class="label">${s.label}</div></div>`).join("");
+
+  document.getElementById("todayLabel").textContent = fmt(TODAY);
+  switchTab("today");
+}
+
+document.getElementById("tab-today").addEventListener("click", () => switchTab("today"));
+document.getElementById("tab-all").addEventListener("click", () => switchTab("all"));
+
+load();
+</script>
+
+</body>
+</html>

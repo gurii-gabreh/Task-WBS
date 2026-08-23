@@ -275,6 +275,7 @@
   td.day.origin-end { border-right: 2px dashed var(--ink-muted); }
   td.day.start-cap .fill { border-top-left-radius: 3px; border-bottom-left-radius: 3px; margin-left: 2px; }
   td.day.end-cap .fill { border-top-right-radius: 3px; border-bottom-right-radius: 3px; margin-right: 2px; }
+  td.day.routine-cell { font-size: 15px; font-weight: 700; color: var(--status-inprogress); }
   td.day.actual-end-mark::after {
     content: ""; position: absolute; right: 3px; top: 50%; width: 6px; height: 6px;
     transform: translateY(-50%); border-radius: 50%; background: var(--status-done);
@@ -335,6 +336,7 @@
   <div>
     <p class="eyebrow">Task Schedule</p>
     <h1>タスクスケジュール</h1>
+    <p style="margin:6px 0 0"><a href="./today.html" style="font-size:12.5px;color:var(--accent);text-decoration:none">📋 今日/全体の一覧(カレンダーなし)を見る →</a></p>
   </div>
   <p class="lede">
     学習タスクと各アプリの開発タスクを、同じ階層(WBS)・同じ時間予算で管理します。Lv1は「勉強」「各アプリ作成」の
@@ -355,6 +357,8 @@
     <div class="legend-sep"></div>
     <div class="legend-group"><span class="legend-tick"></span>当初の終了予定日</div>
     <div class="legend-group"><span class="legend-swatch" style="background:var(--sev-warn-bg)"></span>遅延(軽度〜重度で色が濃くなる)</div>
+    <div class="legend-sep"></div>
+    <div class="legend-group">◯ = ルーティン作業(毎日実施する習慣)を実施した日。空欄は未実施</div>
   </div>
 
   <div class="board" id="board" hidden></div>
@@ -407,6 +411,12 @@ function reviveDates(raw) {
   const node = { ...raw };
   if (raw.children) {
     node.children = raw.children.map(reviveDates);
+  } else if (raw.type === "routine") {
+    // ルーティン作業(毎日実施する習慣): 単一の終了日ではなく、実施した日の一覧(completedDates)を持つ。
+    // endが無ければ期限なしで継続する。
+    node.start = parseDate(raw.start);
+    node.end = raw.end ? parseDate(raw.end) : null;
+    node.completedDates = raw.completedDates || [];
   } else {
     node.start = parseDate(raw.start);
     node.plannedEnd = parseDate(raw.plannedEnd);
@@ -419,6 +429,19 @@ function reviveDates(raw) {
 function computeNode(raw, level, path) {
   const id = path;
   const isLeaf = !raw.children;
+
+  if (isLeaf && raw.type === "routine") {
+    // ルーティン作業には単一の期限・完了状態が無いため、遅延判定はせず(sev.key="na")、
+    // 進捗はその日実施したかどうかで簡易的に代表させる。endが無ければ本日を表示上の終了とする。
+    const displayEnd = raw.end || TODAY;
+    const doneToday = raw.completedDates.includes(fmt(TODAY));
+    return {
+      ...raw, id, level, isLeaf: true, children: [],
+      start: raw.start, plannedEnd: displayEnd, currentEnd: displayEnd, actualEnd: null,
+      status: "対応中", delayDays: null, sev: severityTier(null),
+      doneLeaves: doneToday ? 1 : 0, totalLeaves: 1,
+    };
+  }
 
   if (isLeaf) {
     let currentEnd, delayDays;
@@ -482,6 +505,21 @@ let LEAVES = [];
 let DAYS = [];
 
 function renderCalendarCells(t) {
+  if (t.type === "routine") {
+    let cells = "";
+    for (const day of DAYS) {
+      const we = isWeekend(day);
+      const isToday = sameDay(day, TODAY);
+      const inRange = day >= t.start && (!t.end || day <= t.end);
+      let cls = ["day", "routine-cell"];
+      if (we) cls.push("weekend");
+      if (isToday) cls.push("today");
+      const mark = inRange && t.completedDates.includes(fmt(day)) ? "◯" : "";
+      const tipTitle = inRange ? `${t.title}\n${fmt(day)}（${mark ? "実施済み" : "未実施"}）` : "";
+      cells += `<td class="${cls.join(" ")}"${tipTitle ? ` data-tip="${escapeHtml(tipTitle)}"` : ""}>${mark}</td>`;
+    }
+    return cells;
+  }
   let cells = "";
   for (const day of DAYS) {
     const we = isWeekend(day);
@@ -523,12 +561,20 @@ function renderCalendarCells(t) {
 function renderNode(t) {
   const hasChildren = t.children.length > 0;
   const isCollapsed = collapsed.has(t.id);
+  const isRoutine = t.type === "routine";
   const delayChip = t.sev.key === "na"
     ? `<span class="chip sev-na">-</span>`
     : `<span class="chip sev-${t.sev.key}">${t.sev.label}</span>`;
   const priorityOrProgress = t.isLeaf
     ? `<span class="priority">${priorityDots(t.priority)}${["低","中","高"][t.priority - 1]}</span>`
     : `<span class="progress-frac${t.doneLeaves === t.totalLeaves ? " complete" : ""}">${t.doneLeaves}/${t.totalLeaves} 完了</span>`;
+  const plannedEndCell = isRoutine
+    ? (t.end ? fmtShort(t.end) : "継続中")
+    : `${fmtShort(t.currentEnd)}${t.currentEnd > t.plannedEnd ? ` <span style="color:var(--ink-muted)">(当初${fmtShort(t.plannedEnd)})</span>` : ""}`;
+  const actualEndCell = isRoutine ? "-" : (t.actualEnd ? fmtShort(t.actualEnd) : "-");
+  const statusCell = isRoutine
+    ? `<span class="chip status-inprogress"><span class="dot"></span>継続中</span>`
+    : `<span class="chip ${statusChipClass[t.status]}"><span class="dot"></span>${t.status}</span>`;
 
   let html = `<tr class="lv${t.level}" data-node="${t.id}">
     <td class="col-title">
@@ -543,9 +589,9 @@ function renderNode(t) {
     </td>
     <td class="col-summary"><span class="summary-clip" title="${escapeHtml(t.summary || "")}">${escapeHtml(t.summary || "")}</span></td>
     <td class="col-date">${fmtShort(t.start)}</td>
-    <td class="col-date${t.currentEnd > t.plannedEnd ? "" : " dim"}">${fmtShort(t.currentEnd)}${t.currentEnd > t.plannedEnd ? ` <span style="color:var(--ink-muted)">(当初${fmtShort(t.plannedEnd)})</span>` : ""}</td>
-    <td class="col-date${t.status === "完了" ? "" : " dim"}">${t.actualEnd ? fmtShort(t.actualEnd) : "-"}</td>
-    <td><span class="chip ${statusChipClass[t.status]}"><span class="dot"></span>${t.status}</span></td>
+    <td class="col-date${t.currentEnd > t.plannedEnd ? "" : " dim"}">${plannedEndCell}</td>
+    <td class="col-date${t.status === "完了" ? "" : " dim"}">${actualEndCell}</td>
+    <td>${statusCell}</td>
     <td>${priorityOrProgress}</td>
     <td>${delayChip}</td>
     ${renderCalendarCells(t)}
