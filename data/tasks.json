@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-16",
+  "updatedAt": "2026-09-03",
   "description": "スケジュール管理のタスクツリー(WBS)。学習と各アプリの開発タスクを同じ時間予算で管理する。Lv1(トップレベル)は「勉強」「各アプリ作成」「ルーティン作業」の3つを roots 配列として持ち、それぞれ children を辿って自由な深さで枝分かれする。葉ノード(children を持たないノード)だけがstart/plannedEnd/actualEnd/status/priority/taskId を持つ実行タスク。taskIdは学習タスクがSTU-連番、各アプリタスクはprogress-tracker-dashboard側の実ID(AIR-/UST-/TEX-/KIZ-)をそのまま踏襲する、ルーティン作業はRTN-連番。それ以外のノードは子タスクから開始日・終了日・ステータス・遅延・完了数を自動集計する表示専用のノード。日付は YYYY-MM-DD 形式。\n\n【ルーティン作業(2026-08-23追加)】単発の期限・完了があるタスクとは別に、毎日実施する習慣を扱う葉ノードの種類。`type: \"routine\"`を持ち、通常の葉ノードとはフィールドが異なる: plannedEnd/actualEnd/statusの代わりに、start(開始日)・end(終了日、nullなら期限なしで継続)・completedDates(実施した日をYYYY-MM-DD文字列の配列で記録)を持つ。カレンダー表示では、その日がcompletedDatesに含まれていれば◯、含まれていなければ空欄になる(index.html renderCalendarCells参照)。",
   "studyPolicy": {
     "summary": "疲労時でも続けやすい学習法(書籍「疲れ切った人の勉強法」の研究紹介)に基づき、各分野を①インプット→②積極的想起チェック(検索練習)→③間隔反復レビュー(1〜2日空けて再想起)の3ステップに分解している。疲れている日は①を「理解しようとせず眺めるだけ」に切り替えてもよい。",
@@ -331,8 +331,8 @@
               "summary": "①②の内容を、何も見ずにもう一度ざっと思い出す(忘れかけたタイミングでの再想起)。",
               "start": "2026-09-05",
               "plannedEnd": "2026-09-05",
-              "actualEnd": null,
-              "status": "未対応",
+              "actualEnd": "2026-09-03",
+              "status": "完了",
               "priority": 2,
               "taskId": "STU-012"
             }
