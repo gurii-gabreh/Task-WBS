@@ -167,6 +167,14 @@
   .board {
     background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
     box-shadow: var(--shadow); overflow: auto; max-width: 100%;
+    /* 2026-09-03: .boardの高さを明示的に上限指定しないと、.board自身がoverflow:auto
+       であってもコンテンツに合わせて縦に伸び続けてしまい、実際に縦スクロールするのは
+       ページ(iframe)側になる。position:stickyはthead thの「最も近い実スクロール祖先」
+       である.boardの内部スクロールに対して効くため、.board自身が伸びきって内部スクロール
+       が発生しないと、上部のカレンダーヘッダーが固定されずスクロールで隠れてしまう
+       (ユーザー報告の不具合)。.boardの高さをビューポート基準で頭打ちにし、.board内部で
+       実際に縦スクロールさせることで、theadのsticky固定を機能させる。 */
+    max-height: 72vh;
   }
   .empty-state {
     background: var(--surface); border: 1px dashed var(--border-strong); border-radius: 14px;
@@ -177,6 +185,17 @@
     position: sticky; top: 0; background: var(--surface); z-index: 3;
     border-bottom: 1px solid var(--border-strong); padding: 8px 10px;
     font-weight: 700; color: var(--ink-soft); text-align: left; white-space: nowrap;
+  }
+  /* カレンダー部の月ヘッダー行(2026-09-03追加): 日付だけだと月をまたぐ位置が
+     わかりにくいため、日付行の上にもう1行、月ごとにまとめたラベル行を重ねる。
+     2段になるので、下の日付行(tr.hdr-days)は月行の高さ分だけtopをずらして
+     stickyさせる。 */
+  thead tr.hdr-months th.month {
+    top: 0; height: 22px; padding: 3px 8px; font-size: 10.5px; text-align: center;
+    border-right: 1px solid var(--border); color: var(--ink-muted); font-weight: 800;
+  }
+  thead tr.hdr-days th.day {
+    top: 22px;
   }
   tbody td { padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
   tbody tr:last-child td { border-bottom: none; }
@@ -276,10 +295,12 @@
   td.day.start-cap .fill { border-top-left-radius: 3px; border-bottom-left-radius: 3px; margin-left: 2px; }
   td.day.end-cap .fill { border-top-right-radius: 3px; border-bottom-right-radius: 3px; margin-right: 2px; }
   td.day.routine-cell { font-size: 15px; font-weight: 700; color: var(--status-inprogress); }
-  td.day.actual-end-mark::after {
-    content: ""; position: absolute; right: 3px; top: 50%; width: 6px; height: 6px;
-    transform: translateY(-50%); border-radius: 50%; background: var(--status-done);
-    box-shadow: 0 0 0 2px var(--surface);
+  /* 通常タスク(Lv3)の完了日セル(2026-09-03追加): 塗り色だけだと「実際に対応した日」が
+     ぱっと見でわかりにくいという指摘を受け、ルーティン作業の◯表示と揃えて、完了日
+     (actualEnd)のセルにも◯を重ねて表示する。塗り色(緑=完了)の上に太字の◯を重ねる形。 */
+  .done-mark {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800; color: var(--status-done); line-height: 1; pointer-events: none;
   }
   /* 集計行(Lv1〜2)のバー: 実行タスク(Lv3)の太い実績バーと区別するため、細い帯として表示する */
   td.day.rollup .fill { inset: 15px 0; }
@@ -550,8 +571,10 @@ function renderCalendarCells(t) {
       fillHtml = `<span class="fill slip"></span>`;
     }
 
+    if (isActualEndMark) fillHtml += `<span class="done-mark">◯</span>`;
+
     const tipTitle = (inPlanned || inSlip)
-      ? `${t.title}\n${fmt(day)}（${inSlip ? "当初予定超過" : t.status}）${!t.isLeaf ? " ・子タスクからの自動集計" : ""}`
+      ? `${t.title}\n${fmt(day)}（${inSlip ? "当初予定超過" : t.status}）${!t.isLeaf ? " ・子タスクからの自動集計" : ""}${isActualEndMark ? "・実際に完了した日" : ""}`
       : "";
     cells += `<td class="${cls.join(" ")}"${tipTitle ? ` data-tip="${escapeHtml(tipTitle)}"` : ""}>${fillHtml}</td>`;
   }
@@ -613,19 +636,37 @@ function renderTheadDays() {
   }).join("");
 }
 
+// カレンダーの月ヘッダー行(2026-09-03追加): DAYSを月ごとに連続した区間へグルーピングし、
+// その日数分colspanした<th>を1つ出す。月をまたぐ位置が日付だけだとわかりにくいための対応。
+function renderTheadMonths() {
+  let html = "";
+  let i = 0;
+  while (i < DAYS.length) {
+    const y = DAYS[i].getFullYear(), m = DAYS[i].getMonth();
+    let span = 0;
+    while (i + span < DAYS.length && DAYS[i + span].getFullYear() === y && DAYS[i + span].getMonth() === m) span++;
+    html += `<th class="month" colspan="${span}">${y}年${m + 1}月</th>`;
+    i += span;
+  }
+  return html;
+}
+
 function render() {
   document.getElementById("board").innerHTML = `
     <table>
       <thead>
-        <tr>
-          <th class="col-title">タスク(WBS)</th>
-          <th>概要</th>
-          <th class="col-date">開始予定</th>
-          <th class="col-date">終了予定</th>
-          <th class="col-date">終了日</th>
-          <th>ステータス</th>
-          <th>優先度/進捗</th>
-          <th>遅延</th>
+        <tr class="hdr-months">
+          <th class="col-title" rowspan="2">タスク(WBS)</th>
+          <th rowspan="2">概要</th>
+          <th class="col-date" rowspan="2">開始予定</th>
+          <th class="col-date" rowspan="2">終了予定</th>
+          <th class="col-date" rowspan="2">終了日</th>
+          <th rowspan="2">ステータス</th>
+          <th rowspan="2">優先度/進捗</th>
+          <th rowspan="2">遅延</th>
+          ${renderTheadMonths()}
+        </tr>
+        <tr class="hdr-days">
           ${renderTheadDays()}
         </tr>
       </thead>
