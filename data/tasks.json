@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-03",
+  "updatedAt": "2026-10-04",
   "description": "スケジュール管理のタスクツリー(WBS)。学習と各アプリの開発タスクを同じ時間予算で管理する。Lv1(トップレベル)は「勉強」「各アプリ作成」「ルーティン作業」の3つを roots 配列として持ち、それぞれ children を辿って自由な深さで枝分かれする。葉ノード(children を持たないノード)だけがstart/plannedEnd/actualEnd/status/priority/taskId を持つ実行タスク。taskIdは学習タスクがSTU-連番、各アプリタスクはprogress-tracker-dashboard側の実ID(AIR-/UST-/TEX-/KIZ-)をそのまま踏襲する、ルーティン作業はRTN-連番。それ以外のノードは子タスクから開始日・終了日・ステータス・遅延・完了数を自動集計する表示専用のノード。日付は YYYY-MM-DD 形式。\n\n【ルーティン作業(2026-08-23追加)】単発の期限・完了があるタスクとは別に、毎日実施する習慣を扱う葉ノードの種類。`type: \"routine\"`を持ち、通常の葉ノードとはフィールドが異なる: plannedEnd/actualEnd/statusの代わりに、start(開始日)・end(終了日、nullなら期限なしで継続)・completedDates(実施した日をYYYY-MM-DD文字列の配列で記録)を持つ。カレンダー表示では、その日がcompletedDatesに含まれていれば◯、含まれていなければ空欄になる(index.html renderCalendarCells参照)。",
   "studyPolicy": {
     "summary": "疲労時でも続けやすい学習法(書籍「疲れ切った人の勉強法」の研究紹介)に基づき、各分野を①インプット→②積極的想起チェック(検索練習)→③間隔反復レビュー(1〜2日空けて再想起)の3ステップに分解している。疲れている日は①を「理解しようとせず眺めるだけ」に切り替えてもよい。",
@@ -503,99 +503,262 @@
     {
       "title": "各アプリ作成",
       "subtitle": "progress-tracker-dashboardで管理している各アプリの残タスク",
-      "summary": "ai-research-radar → usage-tracker → text-extraction(認証情報待ちのため確定日ではない)の優先度順で消化する。",
+      "summary": "progress-tracker-dashboard側のdata/tasks.jsonと2026-10-04に完全同期(それまでの記載は1ヶ月以上前から更新が止まっており、AIR-001はリポジトリ自体が廃止済み、UST-003〜006は現存しないIDだったため削除。TEX-001・KIZ-046は完了済みのため除外)。start/plannedEndは暫定値(本日開始・期限未定)で、実際のスケジュールは別途調整が必要。",
       "children": [
         {
-          "title": "ai-research-radar: Gemini調査体制の整備",
-          "subtitle": "AIR-001",
-          "summary": "コード側の実装(GitHub Pages・レート制限対応・繰り返し調査・Claudeフォールバック)は完了済み。残るのはユーザー側の設定作業のみ。",
+          "title": "AIエンジニア方向性: progress-tracker-dashboard管理の残タスク",
+          "subtitle": "AIE-001、AIE-003、AIE-004、AIE-007、AIE-010",
+          "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
           "children": [
             {
-              "title": "専用Claude調査ルームの作成・依頼文貼付・gas再デプロイ",
-              "subtitle": "AIR-001",
-              "summary": "専用のClaude調査ルーム(別セッション)を作成して依頼文を貼り付け、gas/Code.gsを再デプロイする。コード実装は既に完了しているためユーザー側の設定作業のみ。",
-              "start": "2026-09-16",
-              "plannedEnd": "2026-09-16",
+              "title": "AIエンジニアとしての方向性検討(実績調査・必要スキル調査)",
+              "subtitle": "AIE-001",
+              "summary": "2026-08-11新規登録。「相談事項」や「結(kizashi)」と同じ、独立したrepoグループとして親タスク化(README運用ルール34)。専用repoのため、id接頭辞もPTDではなくAIEを新設した(運用ルール24参照)。子タスクはAIE-002・AIE-003(同じrepo値のフラットな並列タスク)。\n【将来のリポジトリ分離】2026-08-11、本人より「あとで専用リポジトリを新規",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
               "actualEnd": null,
               "status": "未対応",
               "priority": 2,
-              "taskId": "AIR-001"
+              "taskId": "AIE-001"
+            },
+            {
+              "title": "今後独立・現場に出た際に必要となるスキルの調査",
+              "subtitle": "AIE-003",
+              "summary": "AIE-001(AIエンジニアとしての方向性検討)の子タスク。",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "AIE-003"
+            },
+            {
+              "title": "AtCoderを受験する",
+              "subtitle": "AIE-004",
+              "summary": "AIE-001(AIエンジニアとしての方向性検討)の子タスク。AIE-003(必要スキル調査)で「AI無しでの実装力の証明」として特定した対策の1つ。2026-08-11、実務経験(要件定義〜実装〜テスト)が判明したこと、コード生成をAI任せにするなら判断力を鍛える方が高レバレッジという指摘を受け、優先度を中→低に格下げ(継続はする)。",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIE-004"
+            },
+            {
+              "title": "情報処理技術者試験を受験する",
+              "subtitle": "AIE-007",
+              "summary": "AIE-001(AIエンジニアとしての方向性検討)の子タスク。AI利用力とは無関係に評価される国家資格として、書類選考の足切りラインで見られることが多い。",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIE-007"
+            },
+            {
+              "title": "設計トレードオフの言語化を習慣にする",
+              "subtitle": "AIE-010",
+              "summary": "AIE-001(AIエンジニアとしての方向性検討)の子タスク。AIE-003(必要スキル調査)で特定した「AI無しでの実装力の証明」対策の1つ。",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIE-010"
             }
           ]
         },
         {
-          "title": "usage-tracker: 使用量分析ダッシュボード",
-          "subtitle": "UST-001",
-          "summary": "Claude Codeの1日あたりの作業量と利用上限の相関を実測データから把握し、予測・アドバイス機能まで備えたダッシュボードを構築する。",
+          "title": "English-LevelUp-Reader: progress-tracker-dashboard管理の残タスク",
+          "subtitle": "ELR-001",
+          "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
           "children": [
             {
-              "title": "使用量ログ・利用上限ログのタブ追加",
-              "subtitle": "UST-003",
-              "summary": "実装進捗管理シートに「使用量ログ」「利用上限ログ」の2タブを追加する。手作業でのシート編集のみ。",
-              "start": "2026-09-17",
-              "plannedEnd": "2026-09-17",
+              "title": "英語読解アプリ 新規開発",
+              "subtitle": "ELR-001",
+              "summary": "2026-09-06、マネージャールームでユーザーと要件を詰めて登録。以下は今回のやり取りで確定した方針:\n- コンテンツ: 日常会話レベルから徐々に難化する構成、日本語と英文を混ぜて表示。10段階のレベル分け。コンテンツ自体はClaudeが作成する(ユーザーからの教材提供なし)。\n- 読み上げ(TTS): ブラウザ標準のSpeechSynthesis APIを使用(無料、iPhone含め概ねどの",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
               "actualEnd": null,
-              "status": "未対応",
+              "status": "対応中",
               "priority": 2,
-              "taskId": "UST-003"
-            },
-            {
-              "title": "各Routineへ自動記録を依頼",
-              "subtitle": "UST-004",
-              "summary": "タブ追加後、各Routineがタスク着手・完了のたびに使用量ログへ自動記録するようプロンプトを更新する。",
-              "start": "2026-09-17",
-              "plannedEnd": "2026-09-18",
-              "actualEnd": null,
-              "status": "未対応",
-              "priority": 2,
-              "taskId": "UST-004"
-            },
-            {
-              "title": "専用リポジトリ・可視化サイト構築",
-              "subtitle": "UST-005",
-              "summary": "使用量ログを可視化する専用サイトを新規構築する。UST-003/004の後続。規模が大きいため見積もりの確度は低め。",
-              "start": "2026-09-19",
-              "plannedEnd": "2026-09-22",
-              "actualEnd": null,
-              "status": "未対応",
-              "priority": 2,
-              "taskId": "UST-005"
-            },
-            {
-              "title": "記録UI・予測・アドバイス機能",
-              "subtitle": "UST-006",
-              "summary": "利用上限に達しそうなタイミングの予測、作業ペースのアドバイス機能を追加する。UST-005の後続。見積もりの確度は低め。",
-              "start": "2026-09-23",
-              "plannedEnd": "2026-09-28",
-              "actualEnd": null,
-              "status": "未対応",
-              "priority": 2,
-              "taskId": "UST-006"
+              "taskId": "ELR-001"
             }
           ]
         },
         {
-          "title": "text-extraction: 画像文字起こし処理",
-          "subtitle": "TEX-001 / TEX-002",
-          "summary": "⚠️ 認証情報(credentials/service_account.json・config.json)がユーザーから提供されるまで着手できない。ここでの日付は「提供された場合の目安」であり確定した予定ではない。",
+          "title": "Study-Schedule: progress-tracker-dashboard管理の残タスク",
+          "subtitle": "SSC-001",
+          "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
           "children": [
             {
-              "title": "今回分の失敗画像の文字起こし処理",
-              "subtitle": "TEX-001",
-              "summary": "スキャフォールド(claude_pipeline/)は実装済み。認証情報の提供待ちで、実データ処理そのものは未着手。",
-              "start": "2026-09-29",
-              "plannedEnd": "2026-09-30",
+              "title": "学習スケジュール",
+              "subtitle": "SSC-001",
+              "summary": "2026-08-13、ユーザーとの相談から新規発足。学習タスクをレベル1(目標)〜レベル4(実行タスク)のWBS(階層構造)で管理し、1日1列のカレンダーで進捗・遅延を可視化する専用アプリ。gurii-gabreh/Study-Scheduleリポジトリを新規作成し、progress-tracker-dashboardの📚学習スケジュールタブ(旧・学習ログタブ)からiframe埋め込みで参照する構",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "SSC-001"
+            }
+          ]
+        },
+        {
+          "title": "claude-codex-integration: progress-tracker-dashboard管理の残タスク",
+          "subtitle": "CCX-001",
+          "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
+          "children": [
+            {
+              "title": "Claude CodeとCodexの連携: 9月上旬にCodex(ChatGPT Plus)を契約し、Claudeの指示のもとCodexに実装作業をさせ、レビュ",
+              "subtitle": "CCX-001",
+              "summary": "【作業タスク】特定のアプリ開発ではなく、開発環境そのものの整備(Claude Code側の作業ルームで使うツール構成の変更)のためoperation扱い。共有Routineの実装対象ではない。",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "CCX-001"
+            }
+          ]
+        },
+        {
+          "title": "claude-voice-bridge: progress-tracker-dashboard管理の残タスク",
+          "subtitle": "CVB-001、CVB-002",
+          "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
+          "children": [
+            {
+              "title": "ルームタスク監査機能(AI直接確認方式)",
+              "subtitle": "CVB-001",
+              "summary": "claude-voice-bridgeは今回のトラッカーで初めて管理対象に加えたリポジトリ(gurii-gabreh/claude-voice-bridge)。本来は各実装の都度このtasks.jsonへ記録すべきだったが、一連の会話の中で記録が漏れていたため、ここで経緯をまとめて記録する(CLAUDE.md最重要ルール「実装したタスクのdetail・noteを空欄のまま完了させない」への対応)。",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "CVB-001"
+            },
+            {
+              "title": "ジャーナル面談機能",
+              "subtitle": "CVB-002",
+              "summary": "2026-09-27、マネージャールームでの新規相談から着手。既存リポジトリ(claude-voice-bridge)への機能追加のため、README運用ルール31の出し分けに従いrequirements.jsonへは追加せず、このタスクのみで管理する(標準10項目の聞き取りは実施済み、内容はdetail参照)。 2026-09-27: 実装完了。ユーザー側でApps Script再デプロイ後、G",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "CVB-002"
+            }
+          ]
+        },
+        {
+          "title": "kizashi: progress-tracker-dashboard管理の残タスク",
+          "subtitle": "KIZ-005",
+          "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
+          "children": [
+            {
+              "title": "技術検証フェーズ(実データでの動作確認)",
+              "subtitle": "KIZ-005",
+              "summary": "【保留】2026-08-08、マネージャールームで発覚: ユーザー専属ルーム(session_01EttsGp4ZSP11U5i8kkKPwA)側で2026-07-18〜08-01の間に8件中6件が実データで検証済みだったが、成果がkizashiリポジトリの未マージブランチ(claude/kizashi-app-setup-my9tda)に留まっており、data/tasks.json側には一切反映されてい",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
               "actualEnd": null,
               "status": "未対応",
               "priority": 2,
-              "taskId": "TEX-001"
+              "taskId": "KIZ-005"
+            }
+          ]
+        },
+        {
+          "title": "progress-tracker-dashboard: progress-tracker-dashboard管理の残タスク",
+          "subtitle": "PTD-012、PTD-045",
+          "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
+          "children": [
+            {
+              "title": "週次残タスクチェック",
+              "subtitle": "PTD-012",
+              "summary": "【作業タスク】毎週月曜、専用のRoutine(週次残タスクチェックトリガー)が実装進捗管理シートの依頼タスクタブ全体(全リポジトリ)を棚卸しし、滞留タスクが無いか確認する。共有Routineの実装対象ではない。",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-012"
             },
             {
-              "title": "標準版テンプレートの文字起こし処理",
+              "title": "作業ルームへの依頼時にGoogle Drive等の閲覧で承認待ち停止が起きる問題の原因特定(未解決)",
+              "subtitle": "PTD-045",
+              "summary": "2026-08-29、ユーザーから「別の作業ルームに依頼すると承認を求められて止まる。Driveを見る等の部分で止まる認識でよいか。処理作成は止まらない認識。Driveを見るときだけ事前にGASで処理を作り自動で動かせるようにすれば、承認を求められず止まらずに動くのではないか」と相談・タスク化依頼あり。\n\n2026-08-29追記: 議論の中で「承認待ち停止はサブエージェント化しても解決しない(呼",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-045"
+            }
+          ]
+        },
+        {
+          "title": "servicenow-sub-agent: progress-tracker-dashboard管理の残タスク",
+          "subtitle": "PTD-054、PTD-055、PTD-058、PTD-065",
+          "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
+          "children": [
+            {
+              "title": "情報源にReddit API・YouTube Data API v3を追加する(要APIアカウント作成)",
+              "subtitle": "PTD-054",
+              "summary": "2026-08-30、ユーザーの依頼を受けmanager-roomが調査。PTD-048(REST Message作成)の6件拡張(候補調査時)とは別に、Reddit・YouTubeは既存のarXiv/Hacker News/Blog RSSと違い、事前に認証情報(APIアカウント)の取得がユーザー側で必要なため、別タスクとして分離した。",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "PTD-054"
+            },
+            {
+              "title": "情報源にWikipedia Pageviews APIを追加するかの設計検討(要ユーザー相談)",
+              "subtitle": "PTD-055",
+              "summary": "2026-08-30、ユーザーの依頼を受けmanager-roomが調査。他の情報源(arXiv/Hacker News/Blog RSS等)とは性質が異なり、既存のu_ai_research_itemテーブル設計(title/summary/source_url/published_at)にそのまま当てはまらないため、実装に入る前に設計方針の確認が必要と判断し、着手保留のまま起票した。",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "PTD-055"
+            },
+            {
+              "title": "ServiceNowが収集したリサーチデータの閲覧サイト化(日本語要約・日/週/月表示・おすすめ順)",
+              "subtitle": "PTD-058",
+              "summary": "2026-09-02、ユーザーから「ServiceNowで調査してもらっている内容を日付/週/月ごとに表示できるサイトを作ってほしい。概要が既に明記されていなければ日本語で概要・ポイント・活かせる技術を明記してほしい」との依頼。既存のu_ai_research_item(PTD-046)のu_summaryは各情報源の生の英語要約に過ぎず日本語の概要・ポイント・活かせる技術は無いことを確認した上で",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-058"
+            },
+            {
+              "title": "ハッカソン向け情報収集強化",
+              "subtitle": "PTD-065",
+              "summary": "2026-09-18、都知事杯オープンデータ・ハッカソン2026(KIZ-046)の一次審査不通過を受け、ユーザーから「情報量が足りない、もう少し情報が必要」との指摘。PTD-020(AIエンジニアとしての方向性相談、ハッカソン等で実績を作る方針)の実行を支える取り組みとして、ダッシュボードで追跡できるタスクとして起票した。",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-065"
+            }
+          ]
+        },
+        {
+          "title": "text-extraction: progress-tracker-dashboard管理の残タスク",
+          "subtitle": "TEX-002",
+          "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
+          "children": [
+            {
+              "title": "文字起こし処理(標準版テンプレート)",
               "subtitle": "TEX-002",
-              "summary": "TEX-001と同じ仕組みを標準の処理対象フォルダに適用する定期処理版。TEX-001と同じく認証情報の提供待ち。",
-              "start": "2026-10-01",
-              "plannedEnd": "2026-10-02",
+              "summary": "2026-08-09、マネージャールームで登録・即時着手(即実行フラグTRUE指定)。今後繰り返し使う定期処理テンプレートとして、TEX-001(今回分)と同内容だが対象フォルダをconfig.json記載の標準の処理対象サブフォルダとする版。運用方法(都度登録/定期実行)はTEX-001完了後に検討する。\n[2026-08-10] TEX-001と同じ出力アーキテクチャ(JSON→GAS自動書き",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
               "actualEnd": null,
               "status": "未対応",
               "priority": 2,
@@ -604,19 +767,144 @@
           ]
         },
         {
-          "title": "kizashi: First Stageプレゼン練習",
-          "subtitle": "",
-          "summary": "",
+          "title": "usage-tracker: progress-tracker-dashboard管理の残タスク",
+          "subtitle": "UST-001",
+          "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
           "children": [
             {
-              "title": "発表練習",
-              "subtitle": "8/28 15:00のFirst Stageプレゼン(2分間)に向けた毎日の練習",
-              "type": "routine",
-              "start": "2026-08-23",
-              "end": "2026-08-28",
-              "completedDates": [],
-              "priority": 3,
-              "taskId": "KIZ-046"
+              "title": "使用量分析ダッシュボード",
+              "subtitle": "UST-001",
+              "summary": "【作業タスク】新しいリポジトリ・専用ルームを作ってユーザー(または専用ルーム)が構築する想定。共有Routineの実装対象ではない。",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "UST-001"
+            }
+          ]
+        },
+        {
+          "title": "相談事項: progress-tracker-dashboard管理の残タスク",
+          "subtitle": "PTD-019、PTD-020、PTD-021、PTD-022、PTD-023、PTD-024、PTD-025、PTD-026、PTD-027",
+          "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
+          "children": [
+            {
+              "title": "相談事項(まとめて後日相談したいテーマ集)",
+              "subtitle": "PTD-019",
+              "summary": "2026-08-10、マネージャールームで登録。特定のリポジトリに紐づかない相談・雑談テーマを扱う独立枠(progress-tracker-dashboardとは別のrepo扱い)。今すぐの実行・調査は不要で、後日このマネージャールームであらためて相談・壁打ちする予定。個々のテーマはPTD-020〜026として並列の通常タスクで管理し、このタスク自身は枠のタイトル的な位置づけ。相談が始まり次第、内",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "PTD-019"
+            },
+            {
+              "title": "AIを活用したエンジニアとして更に上を目指すための方向性の相談。都庁主催のハッカソンのようなコンテストへの参加で実績を作っていく方針について",
+              "subtitle": "PTD-020",
+              "summary": "2026-08-30、実際にkizashi(土砂災害警戒アプリ「結」、kizashi-app.yui-gurii.workers.dev)で「都知事杯オープンデータ・ハッカソン2026」に応募し、一次審査(2分間のプレゼン動画提出、2026-08-26〜30)まで完了したとの報告あり。方針としては実行段階に入ったため未着手から対応中に更新。以降の具体的な進捗はkizashiリポジトリ側のKIZ-0",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-020"
+            },
+            {
+              "title": "現在のAI技術で副業として成立しそうな項目の調査。また、技術力を伸ばせば就ける職種についての調査",
+              "subtitle": "PTD-021",
+              "summary": "",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "PTD-021"
+            },
+            {
+              "title": "現時点で最高峰のAI活用技術と自分自身のスキルとの比較。良い点・悪い点の洗い出し",
+              "subtitle": "PTD-022",
+              "summary": "",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "PTD-022"
+            },
+            {
+              "title": "格言系ショート動画からの文字起こし",
+              "subtitle": "PTD-023",
+              "summary": "",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "PTD-023"
+            },
+            {
+              "title": "以前作成したジャーナリングアプリの改修と実行",
+              "subtitle": "PTD-024",
+              "summary": "",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "PTD-024"
+            },
+            {
+              "title": "親戚の家の農家プロジェクト改修の手引き作成",
+              "subtitle": "PTD-025",
+              "summary": "",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "PTD-025"
+            },
+            {
+              "title": "このメモアプリ内にある「アプリ案」メモから、小タスクへ分解するシステムの構築",
+              "subtitle": "PTD-026",
+              "summary": "",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "PTD-026"
+            },
+            {
+              "title": "個人利用ではなく、企業案件などを見越したアプリ作成フローの確立",
+              "subtitle": "PTD-027",
+              "summary": "",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "PTD-027"
+            }
+          ]
+        },
+        {
+          "title": "設計書テンプレート: progress-tracker-dashboard管理の残タスク",
+          "subtitle": "DGT-001",
+          "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
+          "children": [
+            {
+              "title": "設計書テンプレート化アプリ",
+              "subtitle": "DGT-001",
+              "summary": "2026-08-16、progress-tracker-dashboard側でアーキテクチャ分野(デザインパターン・SOLID・Clean Architecture・モノリスvsマイクロサービス)を学んだ振り返り会話から着想。本人の理解: 「これらは今後アプリを新規設計する際に最初に定義する必要がある部分」であり、設計書の一部として管理したいため、テンプレート化したいとの依頼。実際にアプリを新規設",
+              "start": "2026-10-04",
+              "plannedEnd": "2026-10-11",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "DGT-001"
             }
           ]
         }
