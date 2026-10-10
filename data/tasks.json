@@ -694,6 +694,17 @@
               "status": "対応中",
               "priority": 2,
               "taskId": "PTD-045"
+            },
+            {
+              "title": "市場分析7ステップの初回実運用トラッキング",
+              "subtitle": "PTD-070",
+              "summary": "PTD-069で要件定義に市場分析7ステップ(PEST〜カスタマージャーニー)を組み込んだが、2026-10-10時点でrequirements.jsonの既存エントリのいずれも実際にmarketAnalysisフィールドを記録しておらず、まだ一度も実運用で使われていない。次回の新規相談フローで初めて記録された際、new-app-kickoffスキル/dashboard.htmlテンプレートの手順により自動でcompletedに更新される想定。",
+              "start": "2026-10-11",
+              "plannedEnd": "2026-10-18",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "PTD-070"
             }
           ]
         },
