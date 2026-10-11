@@ -705,6 +705,28 @@
               "status": "未対応",
               "priority": 2,
               "taskId": "PTD-070"
+            },
+            {
+              "title": "ServiceNow収集フロー図のレイアウト微調整(枠はみ出し修正の確認)",
+              "subtitle": "PTD-072",
+              "summary": "Artifact上のServiceNow情報収集フロー図で、注記ボックス内のテキストが重なり枠からはみ出す不具合を発見。修正版は用意済みだがユーザー指示により再公開を保留中。",
+              "start": "2026-10-11",
+              "plannedEnd": "2026-10-18",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "PTD-072"
+            },
+            {
+              "title": "リポジトリ単位の連関図(アプリ間の依存・連携関係)を作成する",
+              "subtitle": "PTD-073",
+              "summary": "タスク単位の連関図(🔗連関図タブ)とは別の粒度で、どのアプリがどのアプリと連携・依存しているかを俯瞰する図。試作(claude-voice-bridge連携マップ)はMermaidで作成したが、正式な実装方針はObsidian Canvasへの方針転換検討により未確定。",
+              "start": "2026-10-11",
+              "plannedEnd": "2026-10-18",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "PTD-073"
             }
           ]
         },
@@ -916,6 +938,22 @@
               "status": "未対応",
               "priority": 2,
               "taskId": "DGT-001"
+            }
+          ]
+        },
+        {
+          "title": "PROMPT-MANAGER: progress-tracker-dashboard管理の残タスク",
+          "children": [
+            {
+              "title": "claude-voice-bridgeへの表示統合・ローカルサーバー不要の半自動生成方式の追加",
+              "subtitle": "PMG-001",
+              "summary": "claude-voice-bridgeに✨プロンプト生成タブ(iframe埋め込み)を追加、PROMPT-MANAGER側に依頼文コピー→貼り付け方式を追加(既存のローカルサーバー方式も維持)。",
+              "start": "2026-10-11",
+              "plannedEnd": "2026-10-18",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PMG-001"
             }
           ]
         }
