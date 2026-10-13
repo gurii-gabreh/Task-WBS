@@ -507,7 +507,7 @@
       "children": [
         {
           "title": "AIエンジニア方向性: progress-tracker-dashboard管理の残タスク",
-          "subtitle": "AIE-001、AIE-003、AIE-004、AIE-007、AIE-010",
+          "subtitle": "AIE-001、AIE-003、AIE-004、AIE-007、AIE-010、AIE-005、AIE-006、AIE-008、AIE-009、AIE-012、AIE-013、AIE-014、AIE-015、AIE-016、AIE-017、AIE-018、AIE-019、AIE-020、AIE-021",
           "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
           "children": [
             {
@@ -564,6 +564,160 @@
               "status": "未対応",
               "priority": 2,
               "taskId": "AIE-010"
+            },
+            {
+              "title": "緑ライン(レーティング800〜1199)到達",
+              "subtitle": "AIE-005",
+              "summary": "must。AtCoderでの最低限のコーディングスキル証明ラインとして必須(AIE-004の子タスク)。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIE-005"
+            },
+            {
+              "title": "水色ライン(レーティング1200〜1599)到達",
+              "subtitle": "AIE-006",
+              "summary": "want。緑ライン(AIE-005)到達後、OSSコントリビュート等の時間を圧迫しない範囲で目指す上振れライン。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIE-006"
+            },
+            {
+              "title": "基本情報技術者試験 合格",
+              "subtitle": "AIE-008",
+              "summary": "情報処理技術者試験の受験(AIE-007)に伴う合格目標。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIE-008"
+            },
+            {
+              "title": "応用情報技術者試験 合格",
+              "subtitle": "AIE-009",
+              "summary": "基本情報技術者試験(AIE-008)合格後に着手する想定。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIE-009"
+            },
+            {
+              "title": "デザインパターンを学ぶ(refactoring.guru)",
+              "subtitle": "AIE-012",
+              "summary": "目安8週間、週3パターンのペース。概要フェーズ(AIE-021)後は実践で該当概念が出た時の深掘り参照先として使う。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIE-012"
+            },
+            {
+              "title": "SOLID原則を学ぶ",
+              "subtitle": "AIE-013",
+              "summary": "目安2〜3週間、週2原則のペース。概要フェーズ(AIE-021)後は実践で該当概念が出た時の深掘り参照先として使う。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIE-013"
+            },
+            {
+              "title": "Clean Architectureを学ぶ",
+              "subtitle": "AIE-014",
+              "summary": "目安2〜3週間。概要フェーズ(AIE-021)後は実践で該当概念が出た時の深掘り参照先として使う。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIE-014"
+            },
+            {
+              "title": "システム設計の考え方を学ぶ(System Design Primer / ByteByteGo)",
+              "subtitle": "AIE-015",
+              "summary": "目安8〜10週間、週1〜2ケースのペース。概要フェーズ(AIE-021)後は実践での深掘り参照先として使う。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIE-015"
+            },
+            {
+              "title": "サーバー・インフラの基礎を学ぶ",
+              "subtitle": "AIE-016",
+              "summary": "目安2〜3ヶ月。概要フェーズ(AIE-021)後は実践での深掘り参照先として使う。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIE-016"
+            },
+            {
+              "title": "セキュリティの基礎を学ぶ",
+              "subtitle": "AIE-017",
+              "summary": "目安2〜3ヶ月(実務レベルの基礎知識)。情報処理安全確保支援士試験自体はAIE-009合格後の発展目標として別検討。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "AIE-017"
+            },
+            {
+              "title": "AI/LLM関連の専門知識を学ぶ",
+              "subtitle": "AIE-018",
+              "summary": "目安1〜2ヶ月。ai-research-radar・gemini-monitorで既に実践経験があるため他項目より短めの見積もり。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIE-018"
+            },
+            {
+              "title": "データベースの基礎を学ぶ",
+              "subtitle": "AIE-019",
+              "summary": "目安1〜2ヶ月。概要フェーズ(AIE-021)後は実践での深掘り参照先として使う。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "AIE-019"
+            },
+            {
+              "title": "テストの基礎を身につける",
+              "subtitle": "AIE-020",
+              "summary": "期限を区切らない継続的な実践。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "AIE-020"
+            },
+            {
+              "title": "6分野の概要を一通りさらう(全体像の把握)",
+              "subtitle": "AIE-021",
+              "summary": "目安2〜4週間。深掘りはせず各分野の地図を掴むことが目的(AIE-012〜020の前提フェーズ)。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "AIE-021"
             }
           ]
         },
@@ -652,7 +806,7 @@
         },
         {
           "title": "kizashi: progress-tracker-dashboard管理の残タスク",
-          "subtitle": "KIZ-005",
+          "subtitle": "KIZ-005、KIZ-007、KIZ-014、KIZ-017",
           "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
           "children": [
             {
@@ -665,12 +819,45 @@
               "status": "未対応",
               "priority": 2,
               "taskId": "KIZ-005"
+            },
+            {
+              "title": "気象庁防災情報XMLの取得テスト",
+              "subtitle": "KIZ-007",
+              "summary": "フォーマット仕様・抽出ロジックの検証は完了。実ライブfeed取得の検証のみ残るという認識は誤りだったと判明。締切優先のためユーザー判断で保留。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "KIZ-007"
+            },
+            {
+              "title": "Cloudflare Workers本番デプロイ状態での警報XML定期取得検証",
+              "subtitle": "KIZ-014",
+              "summary": "本番デプロイ自体はハッカソン提出の必須要件ではない(デモURL任意、操作動画で代替可)。実装自体がまだパーサーPoCのみの段階。締切優先のためユーザー判断で保留。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "KIZ-014"
+            },
+            {
+              "title": "提出物スクショ・動画の撮り直し",
+              "subtitle": "KIZ-017",
+              "summary": "地図タイルはモックアップのままで良いとの方針決定済み。AIチャット応答を実際の応答に差し替えるかは未確定。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "KIZ-017"
             }
           ]
         },
         {
           "title": "progress-tracker-dashboard: progress-tracker-dashboard管理の残タスク",
-          "subtitle": "PTD-012、PTD-045",
+          "subtitle": "PTD-012、PTD-045、PTD-070、PTD-072、PTD-073、PTD-006、PTD-063",
           "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
           "children": [
             {
@@ -727,12 +914,34 @@
               "status": "未対応",
               "priority": 2,
               "taskId": "PTD-073"
+            },
+            {
+              "title": "Routine側addComment呼び出しのコメントタブ反映検証",
+              "subtitle": "PTD-006",
+              "summary": "script.google.comへの直接POSTはネットワーク層でブロックされており、個別の再テストは不要と判断済み(PTD-009の調査結果を援用)。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-006"
+            },
+            {
+              "title": "CROSS_REPO_PAT失効の修正",
+              "subtitle": "PTD-063",
+              "summary": "ユーザー作業タスク。GitHubの個人アクセストークンを再発行し、Secrets(CROSS_REPO_PAT)を更新してsync-claude-md.ymlを正常化する。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "PTD-063"
             }
           ]
         },
         {
           "title": "servicenow-sub-agent: progress-tracker-dashboard管理の残タスク",
-          "subtitle": "PTD-054、PTD-055、PTD-058、PTD-065",
+          "subtitle": "PTD-054、PTD-055、PTD-058、PTD-065、PTD-062",
           "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
           "children": [
             {
@@ -778,6 +987,17 @@
               "status": "対応中",
               "priority": 2,
               "taskId": "PTD-065"
+            },
+            {
+              "title": "ピックアップ限定サイト化(計画中)",
+              "subtitle": "PTD-062",
+              "summary": "research-items.jsonのキュレーション件数を増やし、ビューアーサイトを「ピックアップ済みのみ」表示へ変更する計画。サイト側(index.html)の表示変更は未着手、まずキュレーション件数を増やすフェーズ。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-062"
             }
           ]
         },
@@ -801,7 +1021,7 @@
         },
         {
           "title": "usage-tracker: progress-tracker-dashboard管理の残タスク",
-          "subtitle": "UST-001",
+          "subtitle": "UST-001、UST-003、UST-004、UST-005、UST-006",
           "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
           "children": [
             {
@@ -814,6 +1034,50 @@
               "status": "未対応",
               "priority": 2,
               "taskId": "UST-001"
+            },
+            {
+              "title": "実装進捗管理シートへ使用量ログ・利用上限ログタブを追加",
+              "subtitle": "UST-003",
+              "summary": "使用量分析ダッシュボード(UST-001)の前提となるシート構成の追加作業。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "UST-003"
+            },
+            {
+              "title": "各Routineへ使用量ログ自動記録を依頼",
+              "subtitle": "UST-004",
+              "summary": "タブ構成(UST-003)が固まったら、各Routineへタスク着手・完了のたびに使用量ログへ書き込む処理を依頼する。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "UST-004"
+            },
+            {
+              "title": "推移可視化用の専用リポジトリ・Apps Script・Pages新規用意",
+              "subtitle": "UST-005",
+              "summary": "使用量分析ダッシュボード(UST-001)用に、専用のGitHubリポジトリ・Apps Script・GitHub Pagesを新規に用意する。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "UST-005"
+            },
+            {
+              "title": "利用上限ログUI・予測機能・その場アドバイス機能の追加",
+              "subtitle": "UST-006",
+              "summary": "利用上限ログの任意記録UI、データが溜まった後の予測機能、「あとどれくらいできるか」のその場アドバイス機能を追加する。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "UST-006"
             }
           ]
         },
@@ -925,7 +1189,7 @@
         },
         {
           "title": "設計書テンプレート: progress-tracker-dashboard管理の残タスク",
-          "subtitle": "DGT-001",
+          "subtitle": "DGT-001、DGT-002、DGT-003、DGT-004",
           "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-04に同期。日付は暫定(本日開始・期限未定)のため、実際の着手順に合わせて調整してください。",
           "children": [
             {
@@ -938,6 +1202,39 @@
               "status": "未対応",
               "priority": 2,
               "taskId": "DGT-001"
+            },
+            {
+              "title": "アーキテクチャ分野のテンプレート化",
+              "subtitle": "DGT-002",
+              "summary": "DGT-001(設計書テンプレート化アプリ)の子タスク。学習済み7分野のうちアーキテクチャ分野から着手する。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "DGT-002"
+            },
+            {
+              "title": "要件定義→基本設計→詳細設計の設計工程(プロセスフロー)を確立",
+              "subtitle": "DGT-003",
+              "summary": "DGT-001の子タスク。DGT-002等が「何を確認するか」のチェックポイントなのに対し、こちらは「どの順番で、いつ何をやるか」の工程自体を確立する。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "DGT-003"
+            },
+            {
+              "title": "テスト項目ナレッジ化+フェーズ別チェックポイント生成アプリ",
+              "subtitle": "DGT-004",
+              "summary": "DGT-001の子タスク。「テスト項目のナレッジ作成」と「各段階でのチェックポイント作成」を1つのアプリの2つの役割として実装する。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "DGT-004"
             }
           ]
         },
@@ -954,6 +1251,46 @@
               "status": "対応中",
               "priority": 2,
               "taskId": "PMG-001"
+            }
+          ]
+        },
+        {
+          "title": "supermarket-price-tracker: progress-tracker-dashboard管理の残タスク",
+          "subtitle": "SPT-003、SPT-004、SPT-006",
+          "summary": "progress-tracker-dashboardのdata/tasks.jsonと2026-10-13に同期(日次ログRoutineによる新規グループ作成)。日付は暫定(本日開始、+7日)のため、実際の着手順に合わせて調整してください。",
+          "children": [
+            {
+              "title": "「収集待ちリスト」消費処理の稼働確認",
+              "subtitle": "SPT-003",
+              "summary": "トクバイのチラシを収集する外部処理(Pythonスクリプト)が今も存在し稼働しているかを確認するタスク。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "SPT-003"
+            },
+            {
+              "title": "本番「価格履歴」タブのデータ増加確認",
+              "subtitle": "SPT-004",
+              "summary": "2026-07-27以降、本番の「価格履歴」タブで実際にデータが増えているかどうかを直接確認するタスク。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "SPT-004"
+            },
+            {
+              "title": "PR #1のレビュー・マージとGAS再デプロイ",
+              "subtitle": "SPT-006",
+              "summary": "PR #1(重複レコード防止・チラシ誤検知修正・APIキーのScript Properties化)は2026-08-02にmainへマージ済みと確認済み。残るApps Scriptエディタへの貼り付け保存・ウェブアプリ再デプロイ・GEMINI_API_KEYのScript Properties設定はユーザー作業。",
+              "start": "2026-10-13",
+              "plannedEnd": "2026-10-20",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "SPT-006"
             }
           ]
         }
