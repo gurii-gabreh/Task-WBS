@@ -2003,6 +2003,50 @@
               "status": "完了",
               "priority": 2,
               "taskId": "PTD-084"
+            },
+            {
+              "title": "🔍調査資料タブ新設(🏆ハッカソン候補+入賞作品)+ 🔗連関図タブの不要UI要素削除",
+              "subtitle": "PTD-085",
+              "summary": "🔍調査資料タブ新設・🔗連関図タブ簡素化。実装・動作確認済みだがルール30によりユーザー完了確認待ち。",
+              "start": "2026-10-18",
+              "plannedEnd": "2026-10-25",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-085"
+            },
+            {
+              "title": "🎓学習タブを📄開発資料タブへ統合 + 🇬🇧英語タブ新設(English-Speaking-App埋め込み)",
+              "subtitle": "PTD-086",
+              "summary": "学習タブを開発資料タブへ統合、英語タブ新設。実装・動作確認済みだがルール30によりユーザー完了確認待ち。",
+              "start": "2026-10-18",
+              "plannedEnd": "2026-10-25",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-086"
+            },
+            {
+              "title": "🎯AI駆動型アプリコンテストページ新設(🔍調査資料タブ) + ①セクションの折りたたみ化",
+              "subtitle": "PTD-087",
+              "summary": "AI駆動型アプリコンテストページ新設・折りたたみ化。ユーザー確認済みで完了。",
+              "start": "2026-10-18",
+              "plannedEnd": "2026-10-25",
+              "actualEnd": "2026-10-18",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "PTD-087"
+            },
+            {
+              "title": "💡アプリ事例・アイデア帳ページ新設(🔍調査資料タブ)",
+              "subtitle": "PTD-088",
+              "summary": "r/ClaudeAI投稿を手動貼り付けで記録するReddit事例集(📱)を新設。reddit-idea-recorderスキル化。ルール30によりユーザー完了確認待ち。",
+              "start": "2026-10-18",
+              "plannedEnd": "2026-10-25",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-088"
             }
           ]
         },
@@ -2175,6 +2219,17 @@
               "status": "完了",
               "priority": 2,
               "taskId": "PTD-071"
+            },
+            {
+              "title": "YouTube Data API v3を情報源に追加(category 2/5/10)",
+              "subtitle": "PTD-089",
+              "summary": "AI最新技術+世の中のトレンド(再生回数ベース、日本/世界)をYouTubeから自動収集。ServiceNow PDIへ実反映済み、Scheduled Job実機確認が残作業。",
+              "start": "2026-10-18",
+              "plannedEnd": "2026-10-25",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-089"
             }
           ]
         },
