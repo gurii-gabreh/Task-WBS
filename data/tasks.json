@@ -2226,10 +2226,21 @@
               "summary": "AI最新技術+世の中のトレンド(再生回数ベース、日本/世界)をYouTubeから自動収集。ServiceNow PDIへ実反映済み、Scheduled Job実機確認が残作業。",
               "start": "2026-10-18",
               "plannedEnd": "2026-10-25",
+              "actualEnd": "2026-10-18",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "PTD-089"
+            },
+            {
+              "title": "YouTube「AI流行」カテゴリのノイズ削減(検索語改善+キュレーション判定)",
+              "subtitle": "PTD-090",
+              "summary": "category5(AI流行・再生回数順)の検索語改善+publishedAfter追加、research-item-curationスキルでのYouTube項目判定(category5は10件中0件が本物のAI関連と判明)。改善A/Bともcommit・push済み、Scheduled Job実行後の実データ確認が残作業。",
+              "start": "2026-10-19",
+              "plannedEnd": "2026-10-26",
               "actualEnd": null,
               "status": "対応中",
               "priority": 2,
-              "taskId": "PTD-089"
+              "taskId": "PTD-090"
             }
           ]
         },
