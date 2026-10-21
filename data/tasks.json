@@ -2921,6 +2921,17 @@
               "status": "完了",
               "priority": 2,
               "taskId": "MJ-001"
+            },
+            {
+              "title": "ジャーナル履歴ページに月表示のブロック型カレンダーを追加",
+              "subtitle": "MJ-003",
+              "summary": "journal.htmlへカレンダー追加、記録のある日をクリックすると一覧該当エントリへスクロール+ハイライト。",
+              "start": "2026-10-20",
+              "plannedEnd": "2026-10-27",
+              "actualEnd": "2026-10-20",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "MJ-003"
             }
           ]
         },
@@ -2979,6 +2990,17 @@
               "status": "完了",
               "priority": 2,
               "taskId": "STU-003"
+            },
+            {
+              "title": "問題モード画面のパンくず・リセットボタン行を固定化",
+              "subtitle": "STU-004",
+              "summary": "quiz-bar/sec-hdrをposition:stickyで固定化。デスクトップ・携帯両幅で動作確認済み。",
+              "start": "2026-10-20",
+              "plannedEnd": "2026-10-27",
+              "actualEnd": "2026-10-20",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "STU-004"
             }
           ]
         }
