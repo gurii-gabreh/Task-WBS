@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-10-27",
   "description": "スケジュール管理のタスクツリー(WBS)。学習と各アプリの開発タスクを同じ時間予算で管理する。Lv1(トップレベル)は「勉強」「各アプリ作成」「ルーティン作業」の3つを roots 配列として持ち、それぞれ children を辿って自由な深さで枝分かれする。葉ノード(children を持たないノード)だけがstart/plannedEnd/actualEnd/status/priority/taskId を持つ実行タスク。taskIdは学習タスクがSTU-連番、各アプリタスクはprogress-tracker-dashboard側の実ID(AIR-/UST-/TEX-/KIZ-)をそのまま踏襲する、ルーティン作業はRTN-連番。それ以外のノードは子タスクから開始日・終了日・ステータス・遅延・完了数を自動集計する表示専用のノード。日付は YYYY-MM-DD 形式。\n\n【ルーティン作業(2026-08-23追加)】単発の期限・完了があるタスクとは別に、毎日実施する習慣を扱う葉ノードの種類。`type: \"routine\"`を持ち、通常の葉ノードとはフィールドが異なる: plannedEnd/actualEnd/statusの代わりに、start(開始日)・end(終了日、nullなら期限なしで継続)・completedDates(実施した日をYYYY-MM-DD文字列の配列で記録)を持つ。カレンダー表示では、その日がcompletedDatesに含まれていれば◯、含まれていなければ空欄になる(index.html renderCalendarCells参照)。",
   "studyPolicy": {
     "summary": "疲労時でも続けやすい学習法(書籍「疲れ切った人の勉強法」の研究紹介)に基づき、各分野を①インプット→②積極的想起チェック(検索練習)→③間隔反復レビュー(1〜2日空けて再想起)の3ステップに分解している。疲れている日は①を「理解しようとせず眺めるだけ」に切り替えてもよい。",
@@ -2201,6 +2201,39 @@
               "status": "対応中",
               "priority": 2,
               "taskId": "PTD-105"
+            },
+            {
+              "title": "subagent-role-orchestrationスキルを新設、ルール18へ司令塔/Research/実装/テストの役割分担モデルを追記。重要な判断・結果は別AIによるダブルチェックを挟むルールも追記",
+              "subtitle": "PTD-106",
+              "summary": "ユーザー相談「サブエージェント化をこのルーム内でうまくやればもう少し効率的にできるよね？」「違うAIによるダブルチェックを入れたほうがいいだろ？」への対応。",
+              "start": "2026-10-26",
+              "plannedEnd": "2026-11-02",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-106"
+            },
+            {
+              "title": "調査資料タブ(ハッカソン・コンテスト)に閲覧用の連番ID(No.列)を追加",
+              "subtitle": "PTD-107",
+              "summary": "ユーザー指示「ハッカソン：A-001、コンテスト：B-001のように通し番号でIDを振ってほしい」への対応。既存IDは変更せず別フィールドで追加。",
+              "start": "2026-10-27",
+              "plannedEnd": "2026-11-03",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-107"
+            },
+            {
+              "title": "調査資料タブに「気になるキーワード」サブタブを新設(AI最新情報での保存済み項目一覧)",
+              "subtitle": "PTD-108",
+              "summary": "ユーザー指示「AI最新情報の横に気になるキーワードボタンを追加し一覧化して」への対応。設計変更を2回挟み、保存済み項目のみのtable形式一覧として実装。",
+              "start": "2026-10-27",
+              "plannedEnd": "2026-11-03",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-108"
             }
           ]
         },
