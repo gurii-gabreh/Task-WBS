@@ -2278,6 +2278,50 @@
               "status": "対応中",
               "priority": 2,
               "taskId": "PTD-112"
+            },
+            {
+              "title": "AI最新情報タブのキュレーション追いつかせ(10/18で止まっていた問題への対応)",
+              "subtitle": "PTD-113",
+              "summary": "Researchサブエージェント10体並列実行でcuratedCount 44→184。No.列(C-xxx連番ID)も追加。",
+              "start": "2026-11-01",
+              "plannedEnd": "2026-11-08",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-113"
+            },
+            {
+              "title": "AI最新情報キュレーション+ブログ記事作成 専用ルーム新設",
+              "subtitle": "PTD-114",
+              "summary": "session_011sXeDkL7GLJJzVs7TBrjgz作成、日次Routine(JST09:45)を設定。",
+              "start": "2026-11-01",
+              "plannedEnd": "2026-11-08",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-114"
+            },
+            {
+              "title": "開発資料タブに「図の種類」まとめページを追加",
+              "subtitle": "PTD-115",
+              "summary": "App-Development-Infoにdiagram-types.html新規作成、dashboard.htmlに「📐 図の種類」サブタブ追加。",
+              "start": "2026-11-01",
+              "plannedEnd": "2026-11-08",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-115"
+            },
+            {
+              "title": "design学習資料に「UI要素の名称集(namethatui.com参照)」を追加",
+              "subtitle": "PTD-116",
+              "summary": "namethatui.com全91件を抽出、design.htmlに自作/外部サイト参照トグルを追加。",
+              "start": "2026-11-01",
+              "plannedEnd": "2026-11-08",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-116"
             }
           ]
         },
