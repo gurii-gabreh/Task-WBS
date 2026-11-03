@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01",
+  "updatedAt": "2026-11-03",
   "description": "スケジュール管理のタスクツリー(WBS)。学習と各アプリの開発タスクを同じ時間予算で管理する。Lv1(トップレベル)は「勉強」「各アプリ作成」「ルーティン作業」の3つを roots 配列として持ち、それぞれ children を辿って自由な深さで枝分かれする。葉ノード(children を持たないノード)だけがstart/plannedEnd/actualEnd/status/priority/taskId を持つ実行タスク。taskIdは学習タスクがSTU-連番、各アプリタスクはprogress-tracker-dashboard側の実ID(AIR-/UST-/TEX-/KIZ-)をそのまま踏襲する、ルーティン作業はRTN-連番。それ以外のノードは子タスクから開始日・終了日・ステータス・遅延・完了数を自動集計する表示専用のノード。日付は YYYY-MM-DD 形式。\n\n【ルーティン作業(2026-08-23追加)】単発の期限・完了があるタスクとは別に、毎日実施する習慣を扱う葉ノードの種類。`type: \"routine\"`を持ち、通常の葉ノードとはフィールドが異なる: plannedEnd/actualEnd/statusの代わりに、start(開始日)・end(終了日、nullなら期限なしで継続)・completedDates(実施した日をYYYY-MM-DD文字列の配列で記録)を持つ。カレンダー表示では、その日がcompletedDatesに含まれていれば◯、含まれていなければ空欄になる(index.html renderCalendarCells参照)。",
   "studyPolicy": {
     "summary": "疲労時でも続けやすい学習法(書籍「疲れ切った人の勉強法」の研究紹介)に基づき、各分野を①インプット→②積極的想起チェック(検索練習)→③間隔反復レビュー(1〜2日空けて再想起)の3ステップに分解している。疲れている日は①を「理解しようとせず眺めるだけ」に切り替えてもよい。",
@@ -3298,6 +3298,106 @@
               "status": "完了",
               "priority": 2,
               "taskId": "STU-004"
+            }
+          ]
+        },
+        {
+          "title": "ai-lab",
+          "subtitle": "progress-tracker-dashboard管理の残タスク",
+          "children": [
+            {
+              "title": "AI Lab 新規構築",
+              "subtitle": "AIL-001",
+              "summary": "2026-11-02、progress-tracker-dashboardの「🆕 新規相談」フロー(new-app-kickoffスキル)経由の構想ルームで、ユーザーと要件定義(interviewChecklist全17項目、11〜17は未定のまま起票)・市場分析7ステップを実施し、data/requirements.",
+              "start": "2026-11-02",
+              "plannedEnd": "2026-11-09",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIL-001"
+            }
+          ]
+        },
+        {
+          "title": "progress-tracker-dashboard",
+          "subtitle": "progress-tracker-dashboard管理の残タスク",
+          "children": [
+            {
+              "title": "新規アプリ構想「AI技術公開サイト」の立ち上げ",
+              "subtitle": "PTD-117",
+              "summary": "ユーザー指示「AI技術公開サイトを作ろうか、要件定義から始めたい」への対応。manager-room自身は構想の中身に踏み込まず、new-app-kickoffスキルに沿って専用ルームへ切り出した(ルール「manager-roomは実装が必要な作業を見つけたら自分でコードを書かず作業ルームへ依頼する」、README参照",
+              "start": "2026-11-02",
+              "plannedEnd": "2026-11-09",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-117"
+            },
+            {
+              "title": "開発資料に「使用システム一覧(実績つき)」を追加",
+              "subtitle": "PTD-118",
+              "summary": "ユーザー指示「開発資料にcloudflareのような今まで使用したシステム一覧を作っておきたい。こういうシステムが来たときはこれを使うみたいなことができる、実績も明記、JSON化したデータを下に設計できると思う」への対応。項目(用途/条件/実績/懸念/必要な設定)に加え、確認日・情報の確度(公式/二次情報)もAI提案で",
+              "start": "2026-11-02",
+              "plannedEnd": "2026-11-09",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-118"
+            },
+            {
+              "title": "デザイン設計フェーズ(番号なし、④詳細設計と⑤テストの間)を新設",
+              "subtitle": "PTD-119",
+              "summary": "ユーザー指示「ある程度アプリが出来上がってから、詳細設計とテストの間にデザイン設計(ボタン使用・UI関連のまとめ)を入れたい」「番号入れなくていい」への対応。",
+              "start": "2026-11-02",
+              "plannedEnd": "2026-11-09",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-119"
+            },
+            {
+              "title": "テスト一覧(test-patterns.json)の新設",
+              "subtitle": "PTD-120",
+              "summary": "AI Lab(ai-lab)の②基本設計相談中、ユーザー指示「テスト一覧の仕組みつくって、開発資料のところにテスト一覧をつくって...データ内容はテスト用でJSONを一つ作りその中にまとめておいてほしい、これを基に他のアプリでも参照としたい」への対応。既存の「📐図の種類」(PTD-115)「UI要素名称集」(PTD-1",
+              "start": "2026-11-02",
+              "plannedEnd": "2026-11-09",
+              "actualEnd": "2026-11-02",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "PTD-120"
+            },
+            {
+              "title": "ルール23の確認対象を他アプリの実績・エラーログへ拡大",
+              "subtitle": "PTD-121",
+              "summary": "AI Lab(ai-lab)の④詳細設計相談で、エラー一覧機能(各アプリ自身のリポジトリにdata/error-log.jsonを持つ設計)を決めた際、ユーザー指示「このアプリ以外にも実装前アプリの過去実績を確認することみたいにしておいてほしい」への対応。governance-config-syncスキルの手順に沿って",
+              "start": "2026-11-02",
+              "plannedEnd": "2026-11-09",
+              "actualEnd": "2026-11-02",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "PTD-121"
+            },
+            {
+              "title": "🤖AI最新情報タブへキーワード列を追加",
+              "subtitle": "PTD-122",
+              "summary": "ユーザー指示「serviceNowで調査した記事は、キーワード列追加して、そこにキーワードを表示してほしい」(2026-11-02)への対応。表示個数は「2〜3個(タグ形式)」、184件の過去分バックログは「平日に分解して対応」、今後の新規分は「取得処理のルーティン内で実施」とユーザーが回答(AskUserQuesti",
+              "start": "2026-11-02",
+              "plannedEnd": "2026-11-09",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-122"
+            },
+            {
+              "title": "市場分析フレームワークに「リポジショニング分析」を別途管理で追加",
+              "subtitle": "PTD-123",
+              "summary": "ユーザー指摘(2026-11-03)「今の世の中、モノが溢れすぎているから、同じものでも、違う業界、使用場所の違い、ユーザの違いにより、売ることのできる切り口が増えると思う」「戦略的な部分って観点の中になかったような気がする」への対応。既存のmarketAnalysisFramework(①PEST〜⑦カスタマージャー",
+              "start": "2026-11-03",
+              "plannedEnd": "2026-11-10",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-123"
             }
           ]
         }
