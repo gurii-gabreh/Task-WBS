@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-04",
+  "updatedAt": "2026-11-08",
   "description": "スケジュール管理のタスクツリー(WBS)。学習と各アプリの開発タスクを同じ時間予算で管理する。Lv1(トップレベル)は「勉強」「各アプリ作成」「ルーティン作業」の3つを roots 配列として持ち、それぞれ children を辿って自由な深さで枝分かれする。葉ノード(children を持たないノード)だけがstart/plannedEnd/actualEnd/status/priority/taskId を持つ実行タスク。taskIdは学習タスクがSTU-連番、各アプリタスクはprogress-tracker-dashboard側の実ID(AIR-/UST-/TEX-/KIZ-)をそのまま踏襲する、ルーティン作業はRTN-連番。それ以外のノードは子タスクから開始日・終了日・ステータス・遅延・完了数を自動集計する表示専用のノード。日付は YYYY-MM-DD 形式。\n\n【ルーティン作業(2026-08-23追加)】単発の期限・完了があるタスクとは別に、毎日実施する習慣を扱う葉ノードの種類。`type: \"routine\"`を持ち、通常の葉ノードとはフィールドが異なる: plannedEnd/actualEnd/statusの代わりに、start(開始日)・end(終了日、nullなら期限なしで継続)・completedDates(実施した日をYYYY-MM-DD文字列の配列で記録)を持つ。カレンダー表示では、その日がcompletedDatesに含まれていれば◯、含まれていなければ空欄になる(index.html renderCalendarCells参照)。",
   "studyPolicy": {
     "summary": "疲労時でも続けやすい学習法(書籍「疲れ切った人の勉強法」の研究紹介)に基づき、各分野を①インプット→②積極的想起チェック(検索練習)→③間隔反復レビュー(1〜2日空けて再想起)の3ステップに分解している。疲れている日は①を「理解しようとせず眺めるだけ」に切り替えてもよい。",
@@ -3312,9 +3312,174 @@
               "start": "2026-11-02",
               "plannedEnd": "2026-11-09",
               "actualEnd": null,
-              "status": "未対応",
+              "status": "対応中",
               "priority": 2,
               "taskId": "AIL-001"
+            },
+            {
+              "title": "①要件定義の聞き取り・市場分析",
+              "subtitle": "AIL-002",
+              "summary": "AIL-001のcheckHistory(対応経緯)から、WBSガントチャートで個別表示できるようsubtask化したもの(2026-11-07、ユーザー指示)。詳細はAIL-001のcheckHistory/noteを参照。",
+              "start": "2026-11-02",
+              "plannedEnd": "2026-11-09",
+              "actualEnd": "2026-11-02",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "AIL-002"
+            },
+            {
+              "title": "②基本設計",
+              "subtitle": "AIL-003",
+              "summary": "AIL-001のcheckHistory(対応経緯)から、WBSガントチャートで個別表示できるようsubtask化したもの(2026-11-07、ユーザー指示)。詳細はAIL-001のcheckHistory/noteを参照。",
+              "start": "2026-11-02",
+              "plannedEnd": "2026-11-09",
+              "actualEnd": "2026-11-02",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "AIL-003"
+            },
+            {
+              "title": "③機能要件(通知機能・スパム対策)",
+              "subtitle": "AIL-004",
+              "summary": "AIL-001のcheckHistory(対応経緯)から、WBSガントチャートで個別表示できるようsubtask化したもの(2026-11-07、ユーザー指示)。詳細はAIL-001のcheckHistory/noteを参照。",
+              "start": "2026-11-02",
+              "plannedEnd": "2026-11-09",
+              "actualEnd": "2026-11-02",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "AIL-004"
+            },
+            {
+              "title": "④詳細設計(パスワード方式コメント編集削除・エラーログ)",
+              "subtitle": "AIL-005",
+              "summary": "AIL-001のcheckHistory(対応経緯)から、WBSガントチャートで個別表示できるようsubtask化したもの(2026-11-07、ユーザー指示)。詳細はAIL-001のcheckHistory/noteを参照。",
+              "start": "2026-11-02",
+              "plannedEnd": "2026-11-09",
+              "actualEnd": "2026-11-02",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "AIL-005"
+            },
+            {
+              "title": "デザイン設計(配色・フォント・ダーク固定)",
+              "subtitle": "AIL-006",
+              "summary": "AIL-001のcheckHistory(対応経緯)から、WBSガントチャートで個別表示できるようsubtask化したもの(2026-11-07、ユーザー指示)。詳細はAIL-001のcheckHistory/noteを参照。",
+              "start": "2026-11-03",
+              "plannedEnd": "2026-11-10",
+              "actualEnd": "2026-11-03",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "AIL-006"
+            },
+            {
+              "title": "⑤テスト(Playwright15件・test-patterns.json初登録)",
+              "subtitle": "AIL-007",
+              "summary": "AIL-001のcheckHistory(対応経緯)から、WBSガントチャートで個別表示できるようsubtask化したもの(2026-11-07、ユーザー指示)。詳細はAIL-001のcheckHistory/noteを参照。",
+              "start": "2026-11-03",
+              "plannedEnd": "2026-11-10",
+              "actualEnd": "2026-11-03",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "AIL-007"
+            },
+            {
+              "title": "⑥運用・保守",
+              "subtitle": "AIL-008",
+              "summary": "AIL-001のcheckHistory(対応経緯)から、WBSガントチャートで個別表示できるようsubtask化したもの(2026-11-07、ユーザー指示)。詳細はAIL-001のcheckHistory/noteを参照。",
+              "start": "2026-11-03",
+              "plannedEnd": "2026-11-10",
+              "actualEnd": "2026-11-03",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "AIL-008"
+            },
+            {
+              "title": "⑦リリース・移行",
+              "subtitle": "AIL-009",
+              "summary": "AIL-001のcheckHistory(対応経緯)から、WBSガントチャートで個別表示できるようsubtask化したもの(2026-11-07、ユーザー指示)。詳細はAIL-001のcheckHistory/noteを参照。",
+              "start": "2026-11-03",
+              "plannedEnd": "2026-11-10",
+              "actualEnd": "2026-11-03",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "AIL-009"
+            },
+            {
+              "title": "GAS実デプロイ・GitHub Token設定・UTF-8文字化けバグ修正",
+              "subtitle": "AIL-010",
+              "summary": "AIL-001のcheckHistory(対応経緯)から、WBSガントチャートで個別表示できるようsubtask化したもの(2026-11-07、ユーザー指示)。詳細はAIL-001のcheckHistory/noteを参照。",
+              "start": "2026-11-07",
+              "plannedEnd": "2026-11-14",
+              "actualEnd": "2026-11-07",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "AIL-010"
+            },
+            {
+              "title": "GA4計測ID設定",
+              "subtitle": "AIL-011",
+              "summary": "AIL-001のcheckHistory(対応経緯)から、WBSガントチャートで個別表示できるようsubtask化したもの(2026-11-07、ユーザー指示)。詳細はAIL-001のcheckHistory/noteを参照。",
+              "start": "2026-11-07",
+              "plannedEnd": "2026-11-14",
+              "actualEnd": "2026-11-07",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "AIL-011"
+            },
+            {
+              "title": "AI技術記事4件の実データ投入",
+              "subtitle": "AIL-012",
+              "summary": "AIL-001のcheckHistory(対応経緯)から、WBSガントチャートで個別表示できるようsubtask化したもの(2026-11-07、ユーザー指示)。詳細はAIL-001のcheckHistory/noteを参照。",
+              "start": "2026-11-07",
+              "plannedEnd": "2026-11-14",
+              "actualEnd": "2026-11-07",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "AIL-012"
+            },
+            {
+              "title": "記事作成ツール(draft.html)のプレビュー機能実装",
+              "subtitle": "AIL-013",
+              "summary": "AIL-001のcheckHistory(対応経緯)から、WBSガントチャートで個別表示できるようsubtask化したもの(2026-11-07、ユーザー指示)。詳細はAIL-001のcheckHistory/noteを参照。",
+              "start": "2026-11-07",
+              "plannedEnd": "2026-11-14",
+              "actualEnd": "2026-11-07",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "AIL-013"
+            },
+            {
+              "title": "記事アイキャッチ画像の方針確定(CSSグラデーション+Gemini手動プロンプト)",
+              "subtitle": "AIL-014",
+              "summary": "AIL-001のcheckHistory(対応経緯)から、WBSガントチャートで個別表示できるようsubtask化したもの(2026-11-07、ユーザー指示)。詳細はAIL-001のcheckHistory/noteを参照。",
+              "start": "2026-11-07",
+              "plannedEnd": "2026-11-14",
+              "actualEnd": "2026-11-07",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "AIL-014"
+            },
+            {
+              "title": "ポートフォリオ作品画像の実装(スクリーンショット+CSS吹き出し)",
+              "subtitle": "AIL-015",
+              "summary": "AIL-001のnextActionに記載されている残作業。",
+              "start": "2026-11-08",
+              "plannedEnd": "2026-11-15",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIL-015"
+            },
+            {
+              "title": "トップページヒーロー部の実装(Claude Designモックアップ反映)",
+              "subtitle": "AIL-016",
+              "summary": "AIL-001のnextActionに記載されている残作業。",
+              "start": "2026-11-08",
+              "plannedEnd": "2026-11-15",
+              "actualEnd": null,
+              "status": "未対応",
+              "priority": 2,
+              "taskId": "AIL-016"
             }
           ]
         },
@@ -3398,6 +3563,28 @@
               "status": "対応中",
               "priority": 2,
               "taskId": "PTD-123"
+            },
+            {
+              "title": "気になるキーワード9件の登録+ブログ記事9本の作成",
+              "subtitle": "PTD-127",
+              "summary": "ユーザー指示「feloとgrokで私の質問した記事については気になるキーワード一覧に記載しておいてくれる？記事も作成しちゃって」への対応。",
+              "start": "2026-11-07",
+              "plannedEnd": "2026-11-14",
+              "actualEnd": "2026-11-07",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "PTD-127"
+            },
+            {
+              "title": "開発資料タブへのガントチャートWBS機能の新設",
+              "subtitle": "PTD-128",
+              "summary": "ユーザー相談「今の開発資料にガントチャートのWBSを作成してほしい、今までやった処理も一件ずつのタスクに分けて表示してほしい、課題は課題管理表で確認にしてほしい」への対応。",
+              "start": "2026-11-07",
+              "plannedEnd": "2026-11-14",
+              "actualEnd": "2026-11-07",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "PTD-128"
             }
           ]
         },
@@ -3415,6 +3602,28 @@
               "status": "対応中",
               "priority": 2,
               "taskId": "PTD-124"
+            },
+            {
+              "title": "ServiceNow PDI研究データ収集パイプラインのフィールド欠落バグ修正・データ復旧",
+              "subtitle": "PTD-125",
+              "summary": "ユーザー指摘「AI最新情報が一切出てこないけど」への対応。前日(2026-11-06)の調査の続き。",
+              "start": "2026-11-07",
+              "plannedEnd": "2026-11-14",
+              "actualEnd": "2026-11-07",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "PTD-125"
+            },
+            {
+              "title": "Felo/Grok経由のX(旧Twitter)調査ルーティン構築・13件キュレーション",
+              "subtitle": "PTD-126",
+              "summary": "ユーザー提案「気になるキーワードやよく技術広告で言われているキーワードも発掘できないか」「Xの中から調査するのが良さそう」への対応。",
+              "start": "2026-11-07",
+              "plannedEnd": "2026-11-14",
+              "actualEnd": "2026-11-07",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "PTD-126"
             }
           ]
         }
