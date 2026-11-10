@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-09T00:20:00+09:00",
+  "updatedAt": "2026-11-10T00:30:00+09:00",
   "description": "スケジュール管理のタスクツリー(WBS)。学習と各アプリの開発タスクを同じ時間予算で管理する。Lv1(トップレベル)は「勉強」「各アプリ作成」「ルーティン作業」の3つを roots 配列として持ち、それぞれ children を辿って自由な深さで枝分かれする。葉ノード(children を持たないノード)だけがstart/plannedEnd/actualEnd/status/priority/taskId を持つ実行タスク。taskIdは学習タスクがSTU-連番、各アプリタスクはprogress-tracker-dashboard側の実ID(AIR-/UST-/TEX-/KIZ-)をそのまま踏襲する、ルーティン作業はRTN-連番。それ以外のノードは子タスクから開始日・終了日・ステータス・遅延・完了数を自動集計する表示専用のノード。日付は YYYY-MM-DD 形式。\n\n【ルーティン作業(2026-08-23追加)】単発の期限・完了があるタスクとは別に、毎日実施する習慣を扱う葉ノードの種類。`type: \"routine\"`を持ち、通常の葉ノードとはフィールドが異なる: plannedEnd/actualEnd/statusの代わりに、start(開始日)・end(終了日、nullなら期限なしで継続)・completedDates(実施した日をYYYY-MM-DD文字列の配列で記録)を持つ。カレンダー表示では、その日がcompletedDatesに含まれていれば◯、含まれていなければ空欄になる(index.html renderCalendarCells参照)。",
   "studyPolicy": {
     "summary": "疲労時でも続けやすい学習法(書籍「疲れ切った人の勉強法」の研究紹介)に基づき、各分野を①インプット→②積極的想起チェック(検索練習)→③間隔反復レビュー(1〜2日空けて再想起)の3ステップに分解している。疲れている日は①を「理解しようとせず眺めるだけ」に切り替えてもよい。",
@@ -3596,6 +3596,28 @@
               "status": "完了",
               "priority": 2,
               "taskId": "PTD-129"
+            },
+            {
+              "title": "「AI最新情報キュレーション+ブログ記事作成」日次ルーティンの自動実行を無効化(必要時手動実行へ変更)",
+              "subtitle": "PTD-130",
+              "summary": "クレジット使用量の見直し相談を受け、日次トリガーをenabled:falseへ変更、fire_triggerでの手動実行方式へ。",
+              "start": "2026-11-10",
+              "plannedEnd": "2026-11-17",
+              "actualEnd": "2026-11-10",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "PTD-130"
+            },
+            {
+              "title": "マネージャールームの週次ローテーション運用を開始(新ルーム作成・Routine付け替え)",
+              "subtitle": "PTD-131",
+              "summary": "旧マネージャールームの累計コストの約73%がcache_read由来と判明し、新セッションを作成し日次ログRoutineを付け替え。CLAUDE.md定期確認Routineの付け替えは保留中。",
+              "start": "2026-11-10",
+              "plannedEnd": "2026-11-17",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-131"
             }
           ]
         },
