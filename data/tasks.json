@@ -3614,10 +3614,21 @@
               "summary": "旧マネージャールームの累計コストの約73%がcache_read由来と判明し、新セッションを作成し日次ログRoutineを付け替え。CLAUDE.md定期確認Routineの付け替えは保留中。",
               "start": "2026-11-10",
               "plannedEnd": "2026-11-17",
-              "actualEnd": null,
-              "status": "対応中",
+              "actualEnd": "2026-11-13",
+              "status": "完了",
               "priority": 2,
               "taskId": "PTD-131"
+            },
+            {
+              "title": "AI最新情報・社会課題タブへの未反映分の一括キュレーション",
+              "subtitle": "PTD-132",
+              "summary": "PTD-130のRoutine無効化以降止まっていた反映を一括実施。AI最新情報24件厳選(364→388)、社会課題113件追加(680→793)、カテゴリ8〜11定義追加。",
+              "start": "2026-11-13",
+              "plannedEnd": "2026-11-20",
+              "actualEnd": "2026-11-13",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "PTD-132"
             }
           ]
         },
