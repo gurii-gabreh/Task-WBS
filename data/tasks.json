@@ -3629,6 +3629,28 @@
               "status": "完了",
               "priority": 2,
               "taskId": "PTD-132"
+            },
+            {
+              "title": "マネージャアプリのスマホ表示崩れ修正(サブタブ・絞り込み欄)",
+              "subtitle": "PTD-133",
+              "summary": "スマホでサブタブが縦潰れ・絞り込み欄がはみ出す問題を修正。実機確認・完了確認待ち。",
+              "start": "2026-11-14",
+              "plannedEnd": "2026-11-21",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-133"
+            },
+            {
+              "title": "マネージャアプリの絞り込み欄・情報行を折りたたみ式に(スマホ向け)",
+              "subtitle": "PTD-134",
+              "summary": "絞り込み欄と更新日・件数の行を折りたたみ式に(スマホは初期で閉じる)。実機確認・完了確認待ち。",
+              "start": "2026-11-14",
+              "plannedEnd": "2026-11-21",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-134"
             }
           ]
         },
