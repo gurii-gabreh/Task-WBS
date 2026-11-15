@@ -2296,8 +2296,8 @@
               "summary": "session_011sXeDkL7GLJJzVs7TBrjgz作成、日次Routine(JST09:45)を設定。",
               "start": "2026-11-01",
               "plannedEnd": "2026-11-08",
-              "actualEnd": null,
-              "status": "対応中",
+              "actualEnd": "2026-11-16",
+              "status": "完了",
               "priority": 2,
               "taskId": "PTD-114"
             },
