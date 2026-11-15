@@ -2285,8 +2285,8 @@
               "summary": "Researchサブエージェント10体並列実行でcuratedCount 44→184。No.列(C-xxx連番ID)も追加。",
               "start": "2026-11-01",
               "plannedEnd": "2026-11-08",
-              "actualEnd": null,
-              "status": "対応中",
+              "actualEnd": "2026-11-16",
+              "status": "完了",
               "priority": 2,
               "taskId": "PTD-113"
             },
