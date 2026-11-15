@@ -3662,6 +3662,17 @@
               "status": "対応中",
               "priority": 2,
               "taskId": "PTD-135"
+            },
+            {
+              "title": "キュレーション時の⭐おすすめ印(AI最新情報に読み取り専用の⭐列)",
+              "subtitle": "PTD-136",
+              "summary": "キュレーションした回にのみおすすめをrecommended:trueにし、ダッシュボードに⭐列で表示。実データでの初回付与待ち",
+              "start": "2026-11-16",
+              "plannedEnd": "2026-11-23",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-136"
             }
           ]
         },
