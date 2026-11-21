@@ -889,6 +889,28 @@
               "status": "完了",
               "priority": 2,
               "taskId": "PTD-078"
+            },
+            {
+              "title": "コマンド一覧タブに「計画のタスク」件名を読み込み、クリックで入力欄へ挿入+折りたたみ状態の保存",
+              "subtitle": "CVB-004",
+              "summary": "ユーザー指示「最新の定例文読み取りで、計画のタスク内容も読み込んでくれる?」「件名だけ取り込んでほしい」「完了は除外」「折りたたみできるようにして」「最後の状態を覚える(推奨)」(2026-11-21)。",
+              "start": "2026-11-21",
+              "plannedEnd": "2026-11-28",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "CVB-004"
+            },
+            {
+              "title": "サイドアプリが拡張機能一覧から消えた件の復旧",
+              "subtitle": "CVB-005",
+              "summary": "ユーザー「なんかサイドアプリが、拡張機能のところから消えた」「拡張機能の一覧から消えた」→「もどった」(2026-11-21)。",
+              "start": "2026-11-21",
+              "plannedEnd": "2026-11-28",
+              "actualEnd": "2026-11-21",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "CVB-005"
             }
           ]
         },
@@ -2922,8 +2944,8 @@
               "summary": "GitHub Pages・レート制限対応・繰り返し調査・混雑時間帯最適化・Claudeフォールバックの各機能はコード側は完了。Claude調査ルーム(専用セッション)の作成・依頼文の貼り付けはユーザー側の対応待ちだった。\n2026-08-30追記(棚卸し調査で判明): ai-research-radarリポジトリ自体が2026-08-26頃に廃止され、progress-tracker-dashbo (中止)",
               "start": "2026-08-30",
               "plannedEnd": "2026-09-06",
-              "actualEnd": "2026-08-30",
-              "status": "完了",
+              "actualEnd": null,
+              "status": "未対応",
               "priority": 2,
               "taskId": "AIR-001"
             },
@@ -2955,8 +2977,8 @@
               "summary": "【作業タスク】\n2026-08-30、親タスクAIR-001の通りai-research-radarリポジトリ自体が廃止されたため中止。参考までに棚卸し調査時点(2026年8月)の二次情報源では、gemini-3.5-flash無料枠はおおむね15RPM/1,500RPD程度という情報が見られたが、情報源間で数値にばらつきがあり公式一次情報での確定はできていない。 (中止)",
               "start": "2026-08-30",
               "plannedEnd": "2026-09-06",
-              "actualEnd": "2026-08-30",
-              "status": "完了",
+              "actualEnd": null,
+              "status": "未対応",
               "priority": 2,
               "taskId": "AIR-004"
             },
@@ -2999,8 +3021,8 @@
               "summary": "GAS側の実装・data/claude-fallback-results.jsonの用意・README記載まではコード側で完了。専用のClaude調査ルーム(別セッション)の作成と依頼文の貼り付けは人の対応待ちだった。\n2026-08-30追記: git logではフォールバック結果のcommitが2026-08-02〜08-29の間断続的に多数存在し機能自体には稼働実績があったが、本来メインのは (中止)",
               "start": "2026-08-30",
               "plannedEnd": "2026-09-06",
-              "actualEnd": "2026-08-30",
-              "status": "完了",
+              "actualEnd": null,
+              "status": "未対応",
               "priority": 2,
               "taskId": "AIR-008"
             },
@@ -3010,8 +3032,8 @@
               "summary": "2026-08-30、親タスクAIR-008・AIR-001の通りai-research-radarリポジトリ自体が廃止されたため中止。 (中止)",
               "start": "2026-08-30",
               "plannedEnd": "2026-09-06",
-              "actualEnd": "2026-08-30",
-              "status": "完了",
+              "actualEnd": null,
+              "status": "未対応",
               "priority": 2,
               "taskId": "AIR-009"
             },
@@ -3021,8 +3043,8 @@
               "summary": "2026-08-30、親タスクAIR-008・AIR-001の通りai-research-radarリポジトリ自体が廃止されたため中止。実際にはprogress-tracker-dashboard側の別Routine(ai-research-feed.json向け)や手動対応が代替していたと見られる(concept-log.jsonのCL-004参照)。 (中止)",
               "start": "2026-08-30",
               "plannedEnd": "2026-09-06",
-              "actualEnd": "2026-08-30",
-              "status": "完了",
+              "actualEnd": null,
+              "status": "未対応",
               "priority": 2,
               "taskId": "AIR-010"
             }
@@ -3691,8 +3713,8 @@
               "summary": "11/08にAI Lab構想ルームで実装済み(記録漏れを11/21に遡及記録)。完了確認待ち",
               "start": "2026-11-08",
               "plannedEnd": "2026-11-28",
-              "actualEnd": null,
-              "status": "対応中",
+              "actualEnd": "2026-11-21",
+              "status": "完了",
               "priority": 2,
               "taskId": "PTD-137"
             },
@@ -3728,6 +3750,72 @@
               "status": "完了",
               "priority": 2,
               "taskId": "PTD-140"
+            },
+            {
+              "title": "自動処理の点検表(loop-design-check)の導入と夜間Routineの修正",
+              "subtitle": "PTD-141",
+              "summary": "ユーザー指示「チェックする内容を見える化」「出す場所は🔄ルーティンの処理一覧」「1だね」、修正案は「この案で実装(推奨)」「私から依頼を届ける(推奨)」(2026-11-21)。",
+              "start": "2026-11-21",
+              "plannedEnd": "2026-11-28",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-141"
+            },
+            {
+              "title": "要件定義の聞き取り18番「AIに許す操作の範囲と承認の要否」追加",
+              "subtitle": "PTD-142",
+              "summary": "Felo X Research取り込みルームからの引き継ぎ(BCG「The Authorization Gap in AI Agent Governance」2026)。ユーザー「OK」→完了了承「完了でいい」(2026-11-21)。",
+              "start": "2026-11-21",
+              "plannedEnd": "2026-11-28",
+              "actualEnd": "2026-11-21",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "PTD-142"
+            },
+            {
+              "title": "AI最新情報のC-番号を未採番41件に採番し、今後は深夜0:05に一本化",
+              "subtitle": "PTD-143",
+              "summary": "Feloルームからの参考連絡。ユーザー「不採用も結果的にAI最新情報だからCかな」「今41件+今後は深夜(推奨)」→「完了でいい」(2026-11-21)。",
+              "start": "2026-11-21",
+              "plannedEnd": "2026-11-28",
+              "actualEnd": "2026-11-21",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "PTD-143"
+            },
+            {
+              "title": "Felo/Grok調査結果取り込みルームに深夜のtasks.json一括記録Routineを設置",
+              "subtitle": "PTD-144",
+              "summary": "Feloルームからの連絡を受け、ユーザー選択「各ルームに深夜記録(推奨)」(2026-11-21)。",
+              "start": "2026-11-21",
+              "plannedEnd": "2026-11-28",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-144"
+            },
+            {
+              "title": "AI Lab・GitHub Pages全アプリにAI学習拒否のrobots.txtを導入",
+              "subtitle": "PTD-145",
+              "summary": "ユーザー指示「作成したアプリで相手側の学習に使われるタイミングがあったら、禁止してほしい」、範囲「AI Lab+GitHub Pages(推奨)」、内容「共通合図+名前指定(推奨)」、コメントは「すぐ治るなら直しておいて」(2026-11-",
+              "start": "2026-11-21",
+              "plannedEnd": "2026-11-28",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-145"
+            },
+            {
+              "title": "ルール33追加: AIの調査・最新情報への回答には必ずAIBLの内容を含める",
+              "subtitle": "PTD-146",
+              "summary": "ユーザー指示「いつもAIの調査情報や最新情報について聞いたときは、必ずAIBLの内容入れてほしい」、選択「共通ルール化+両方の方法(推奨)」(2026-11-21)。",
+              "start": "2026-11-21",
+              "plannedEnd": "2026-11-28",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-146"
             }
           ]
         },
@@ -3767,6 +3855,28 @@
               "status": "完了",
               "priority": 2,
               "taskId": "PTD-126"
+            },
+            {
+              "title": "AIBL(日本語AIニュース)をServiceNowの日次収集に追加",
+              "subtitle": "PTD-147",
+              "summary": "ユーザー「どんな情報が習得できるかと、これもservicenowで情報収集したい」→A「タイトルとURLだけ(推奨)」→実装案「この案で実装(推奨)」(2026-11-21)。AIBL内容はCodexで公式ページ確認(無料会員でニュース読み",
+              "start": "2026-11-21",
+              "plannedEnd": "2026-11-28",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-147"
+            },
+            {
+              "title": "research-items.jsonのsysId重複を自動で1件にまとめる",
+              "subtitle": "PTD-148",
+              "summary": "ユーザー指示「そうだね、重複があったら一つになるように調整して」(2026-11-21)。",
+              "start": "2026-11-21",
+              "plannedEnd": "2026-11-28",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-148"
             }
           ]
         }
