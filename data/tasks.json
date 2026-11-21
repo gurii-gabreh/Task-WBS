@@ -3684,6 +3684,17 @@
               "status": "対応中",
               "priority": 2,
               "taskId": "PTD-137"
+            },
+            {
+              "title": "アプリ作成ルームごとの深夜のtasks.json一括記録",
+              "subtitle": "PTD-138",
+              "summary": "既存2ルームに深夜Routine設定、new-app-kickoffに標準化。初回実行確認待ち",
+              "start": "2026-11-21",
+              "plannedEnd": "2026-11-28",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-138"
             }
           ]
         },
