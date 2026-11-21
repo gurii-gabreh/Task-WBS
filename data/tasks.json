@@ -869,6 +869,17 @@
               "taskId": "CVB-002"
             },
             {
+              "title": "サイドパネルに⌨️コマンド一覧タブ新設・タスク抽出を非表示",
+              "subtitle": "CVB-003",
+              "summary": "2026-11-21完了(claude-voice-bridge 0edfc33)",
+              "start": "2026-11-21",
+              "plannedEnd": "2026-11-21",
+              "actualEnd": "2026-11-21",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "CVB-003"
+            },
+            {
               "title": "タスク抽出の複数項目併合バグ修正",
               "subtitle": "PTD-078",
               "summary": "ユーザーから「タスク抽出ボタン押すと、複数のタスクがあるのに、ひとつにまとめているけど、どうゆうこと？」と報告。実際にサイドパネルへ貼り付けられた表示内容(タスクID:回答10/17 12:14:44-1の1行に、本来4項目あるはずの内容・次項目の種別/担当/リポジトリ/内容までが全て連結されていた)から、原因をコードレベルで特定した。",
@@ -3695,6 +3706,28 @@
               "status": "対応中",
               "priority": 2,
               "taskId": "PTD-138"
+            },
+            {
+              "title": "記録を深夜に一括で行う運用への変更",
+              "subtitle": "PTD-139",
+              "summary": "2026-11-21完了",
+              "start": "2026-11-21",
+              "plannedEnd": "2026-11-21",
+              "actualEnd": "2026-11-21",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "PTD-139"
+            },
+            {
+              "title": "相談は選択肢の画面(AskUserQuestion)で出す運用の追加",
+              "subtitle": "PTD-140",
+              "summary": "2026-11-21完了",
+              "start": "2026-11-21",
+              "plannedEnd": "2026-11-21",
+              "actualEnd": "2026-11-21",
+              "status": "完了",
+              "priority": 2,
+              "taskId": "PTD-140"
             }
           ]
         },
