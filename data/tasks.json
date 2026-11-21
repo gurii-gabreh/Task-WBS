@@ -3673,6 +3673,17 @@
               "status": "対応中",
               "priority": 2,
               "taskId": "PTD-136"
+            },
+            {
+              "title": "WBSガントチャートの表示改善5件",
+              "subtitle": "PTD-137",
+              "summary": "11/08にAI Lab構想ルームで実装済み(記録漏れを11/21に遡及記録)。完了確認待ち",
+              "start": "2026-11-08",
+              "plannedEnd": "2026-11-28",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-137"
             }
           ]
         },
