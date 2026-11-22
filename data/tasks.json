@@ -896,8 +896,8 @@
               "summary": "ユーザー指示「最新の定例文読み取りで、計画のタスク内容も読み込んでくれる?」「件名だけ取り込んでほしい」「完了は除外」「折りたたみできるようにして」「最後の状態を覚える(推奨)」(2026-11-21)。",
               "start": "2026-11-21",
               "plannedEnd": "2026-11-28",
-              "actualEnd": null,
-              "status": "対応中",
+              "actualEnd": "2026-11-22",
+              "status": "完了",
               "priority": 2,
               "taskId": "CVB-004"
             },
@@ -911,6 +911,17 @@
               "status": "完了",
               "priority": 2,
               "taskId": "CVB-005"
+            },
+            {
+              "title": "サイドアプリの計画のタスクをステータス順→タスクID順に並べ替え",
+              "subtitle": "CVB-006",
+              "summary": "ユーザー指示「サイドアプリの計画タスクの表示なんだけど、タスクIDでソートできる？」「Bでまとめてから、A(おすすめ)でまとめて」。",
+              "start": "2026-11-22",
+              "plannedEnd": "2026-11-29",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "CVB-006"
             }
           ]
         },
@@ -3076,6 +3087,17 @@
               "status": "完了",
               "priority": 2,
               "taskId": "ESA-002"
+            },
+            {
+              "title": "ChatGPTレッスン指示文を15分(トピック10分+フリートーク5分)に変更し進め方の要望4点を反映",
+              "subtitle": "ESA-003",
+              "summary": "ユーザー指示「すべてのレッスンを15分にする その中で、トピックとフリートークを分けてほしい」、選択「トピック10分+フリー5分(推奨)」。",
+              "start": "2026-11-22",
+              "plannedEnd": "2026-11-29",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "ESA-003"
             }
           ]
         },
@@ -3816,6 +3838,39 @@
               "status": "対応中",
               "priority": 2,
               "taskId": "PTD-146"
+            },
+            {
+              "title": "スプレッドシート「実装進捗管理シート」と同期用GASを廃止",
+              "subtitle": "PTD-149",
+              "summary": "ユーザー指示「スプレッドシートは廃止でいいかな だから、それに伴うGASも停止で この記録を何処かに残しておいてくれる？」「外す(推奨)」。ai-research-radarのGemini用GAS(collectAIResearch)は一度「動かしておいて」とされ65cd70dで記録を訂正したが、その後「やっパ停止でいいかな 今gemini API使っていないから」と停止の指示があり、手順を案内済",
+              "start": "2026-11-22",
+              "plannedEnd": "2026-11-29",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-149"
+            },
+            {
+              "title": "どのAIでもGitHubを見れば分かる仕組み(AGENTS.md・ルール34・課題の一本化)",
+              "subtitle": "PTD-150",
+              "summary": "ユーザー指示「様々なAIがアクセスし、git hubにアクセスすればアプリの内容、いままでの開発経緯、最新状態と課題をわかるようにしたい」「データは全て1つにまとめたい、大部分のデータがあるのはtasks.json側だよね？」「進めて」。進め方は1 AGENTS.md+ルール34→2 課題一本化→3 🔄ルーティン最新化→4 READMEの更新日点検→5 各リポジトリのAGENTS.md、各段階で案",
+              "start": "2026-11-22",
+              "plannedEnd": "2026-11-29",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-150"
+            },
+            {
+              "title": "ChatGPTの音声会話で要件定義し、Claude Codeへ引き継いで実装する流れ",
+              "subtitle": "PTD-151",
+              "summary": "ユーザー指示「会話しながら遣り取りをする」(音声会話はClaudeではできないためChatGPT)、「chat GPT側にもgit hub更新させるようにすればいいよね？」、「codex側からclaude codeに連携はできないのかな？難しそうなら、claude codeのマネージャアプリへの実装引継ぎプロンプトを最後に作成することをルール化して」。選択「この形で反映(推奨)」、B(Codexの",
+              "start": "2026-11-22",
+              "plannedEnd": "2026-11-29",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-151"
             }
           ]
         },
@@ -3873,8 +3928,8 @@
               "summary": "ユーザー指示「そうだね、重複があったら一つになるように調整して」(2026-11-21)。",
               "start": "2026-11-21",
               "plannedEnd": "2026-11-28",
-              "actualEnd": null,
-              "status": "対応中",
+              "actualEnd": "2026-11-22",
+              "status": "完了",
               "priority": 2,
               "taskId": "PTD-148"
             }
