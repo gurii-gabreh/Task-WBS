@@ -3871,6 +3871,17 @@
               "status": "対応中",
               "priority": 2,
               "taskId": "PTD-151"
+            },
+            {
+              "title": "全リポジトリの読み取り点検(鍵の漏えい・乗っ取りの痕跡)",
+              "subtitle": "PTD-152",
+              "summary": "ユーザー「これやって」(11/25)。公開24リポジトリを全履歴まで点検。",
+              "start": "2026-11-25",
+              "plannedEnd": "2026-12-02",
+              "actualEnd": null,
+              "status": "対応中",
+              "priority": 2,
+              "taskId": "PTD-152"
             }
           ]
         },
